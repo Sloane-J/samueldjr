@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 18 18 18;
+    --card: 30 30 30;
+    --border: 38 38 38;
+    --primary: 235 186 123;
+    --muted: 115 115 115;
+  }
+ 
+  .dark {
+    --background: 18 18 18;
+    --card: 30 30 30;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-white;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
