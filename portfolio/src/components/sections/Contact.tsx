@@ -1,7 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { Mail, Phone, MapPin } from "lucide-react"
+import ContactForm from "./ContactForm"
 
 export default function Contact() {
   return (
@@ -27,48 +28,7 @@ export default function Contact() {
             transition={{ duration: 0.5 }}
             className="bg-[#232323] rounded-lg p-6"
           >
-            <form className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full px-4 py-2 bg-[#2a2a2a] rounded-lg border border-gray-700 focus:outline-none focus:border-white transition-colors"
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full px-4 py-2 bg-[#2a2a2a] rounded-lg border border-gray-700 focus:outline-none focus:border-white transition-colors"
-                  placeholder="your@email.com"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  className="w-full px-4 py-2 bg-[#2a2a2a] rounded-lg border border-gray-700 focus:outline-none focus:border-white transition-colors resize-none"
-                  placeholder="Your message"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-white text-[#121212] py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
-              >
-                <Send className="w-4 h-4" />
-                Send Message
-              </button>
-            </form>
+            <ContactForm />
           </motion.div>
 
           {/* Contact Information */}
