@@ -1,7 +1,9 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Github, ExternalLink, Folder } from "lucide-react"
+import ProjectFilter from "./ProjectFilter"
 
 const projects = [
   {
@@ -31,6 +33,8 @@ const projects = [
 ]
 
 export default function Projects() {
+  const [filteredProjects, setFilteredProjects] = useState(projects)
+
   return (
     <section id="projects" className="py-20 bg-[#1a1a1a]">
       <div className="container mx-auto px-4">
@@ -45,8 +49,10 @@ export default function Projects() {
           <p className="text-gray-400 text-lg">Some of my recent work that showcases my skills and experience</p>
         </motion.div>
 
+        <ProjectFilter projects={projects} onFilter={setFilteredProjects} />
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <motion.article
               key={project.title}
               initial={{ opacity: 0, y: 20 }}

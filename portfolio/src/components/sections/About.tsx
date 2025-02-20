@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Code2, Palette, Globe2 } from "lucide-react"
+import Skills from "./Skills"
 
 const skills = [
   {
@@ -65,6 +66,20 @@ export default function About() {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Add Skills section */}
+        <div className="mt-20">
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-2xl font-bold text-center mb-12"
+          >
+            Technical Skills
+          </motion.h3>
+          <Skills />
         </div>
       </div>
     </section>
