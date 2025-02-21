@@ -11,18 +11,21 @@ const skills = [
     icon: Code2,
     description: "Building responsive and performant web applications using modern technologies.",
     technologies: ["React", "Next.js", "TypeScript", "Node.js"],
+    color: "bg-blue-600" // Solid blue color
   },
   {
     title: "UI/UX Design",
     icon: Palette,
     description: "Creating intuitive and beautiful user interfaces with attention to detail.",
     technologies: ["Figma", "Adobe XD", "Tailwind CSS", "Framer Motion"],
+    color: "bg-purple-600" // Solid purple color
   },
   {
     title: "Full Stack",
     icon: Globe2,
     description: "End-to-end development from database design to frontend implementation.",
     technologies: ["PostgreSQL", "MongoDB", "Express", "REST APIs"],
+    color: "bg-green-500" // Solid light green color
   },
 ]
 
@@ -84,7 +87,7 @@ export default function About() {
         {/* Profile Section with Image Left, Text Right */}
         <div className="max-w-6xl mx-auto mb-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left - Profile Image with Animation */}
+            {/* Left - Clean Profile Image with Animation */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -92,18 +95,14 @@ export default function About() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-2xl blur-xl" />
-              <div className="relative aspect-square overflow-hidden rounded-xl bg-[#2a2a2a]">
-                <img
-                  src="/images/profile-image.jpg"
-                  alt="Developer Profile"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = "https://placehold.co/600x600/2a2a2a/white?text=Developer+Profile";
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-              </div>
+              <img
+                src="/images/profile-image.jpg"
+                alt="Developer Profile"
+                className="w-full h-auto rounded-xl object-cover"
+                onError={(e) => {
+                  e.currentTarget.src = "https://placehold.co/600x600/2a2a2a/white?text=Developer+Profile";
+                }}
+              />
             </motion.div>
 
             {/* Right - Text Content with Staggered Animation */}
@@ -161,48 +160,33 @@ export default function About() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {skills.map((skill) => (
-            <motion.div
-              key={skill.title}
-              variants={cardVariants}
-              className="bg-[#232323] rounded-lg p-8 hover:bg-[#2a2a2a] transition-all duration-300 border border-white/5 hover:border-purple-500/20 hover:shadow-lg hover:shadow-purple-500/5"
-            >
-              <div className="mb-5 bg-gradient-to-br from-blue-600/20 to-purple-600/20 p-3 rounded-lg w-fit">
-                <skill.icon className="w-8 h-8 text-blue-400" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">{skill.title}</h3>
-              <p className="text-gray-400 mb-5">{skill.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {skill.technologies.map((tech) => (
-                  <span key={tech} className="bg-white/5 text-sm px-3 py-1 rounded-full border border-white/10">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+          {skills.map((skill, index) => {
+            // Extra color for the 4th card if needed
+            const iconColors = ["bg-blue-600", "bg-purple-600", "bg-green-500", "bg-orange-500"];
+            const iconColor = skill.color || iconColors[index % iconColors.length];
+            
+            return (
+              <motion.div
+                key={skill.title}
+                variants={cardVariants}
+                className="bg-[#232323] rounded-lg p-8 hover:bg-[#2a2a2a] transition-all duration-300 border border-white/5 hover:border-white/10 hover:shadow-lg"
+              >
+                <div className={`mb-5 ${iconColor} p-3 rounded-lg w-fit`}>
+                  <skill.icon className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">{skill.title}</h3>
+                <p className="text-gray-400 mb-5">{skill.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {skill.technologies.map((tech) => (
+                    <span key={tech} className="bg-white/5 text-sm px-3 py-1 rounded-full border border-white/10">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
-
-        {/* Technical Skills Section */}
-        <div className="mt-24">
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 1.5 }}
-            className="text-2xl font-bold text-center mb-12"
-          >
-            Technical Skills
-          </motion.h3>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 1.8 }}
-          >
-            <Skills />
-          </motion.div>
-        </div>
       </div>
     </section>
   )
