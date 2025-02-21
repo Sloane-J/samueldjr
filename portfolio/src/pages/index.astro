@@ -3,9 +3,10 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/navigation/Navbar';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
-import Skills from '../components/sections/Skills';
-import Projects from '../components/sections/Projects';
+/*import Skills from '../components/sections/Skills';*/
 import Services from '../components/sections/Services';
+import Projects from '../components/sections/Projects';
+
 import Testimonials from '../components/sections/Testimonials';
 import Blog from '../components/sections/Blog';
 import Contact from '../components/sections/Contact';
@@ -20,9 +21,10 @@ import BackgroundAnimation from '../components/ui/BackgroundAnimation';
   <main>
     <Hero client:load />
     <About client:load />
-    <Skills client:load />
-    <Projects client:load />
+    {/*<Skills client:load />*/}
     <Services client:load />
+    <Projects client:load />
+
     <Testimonials client:load />
     <Blog client:load />
     <Contact client:load />

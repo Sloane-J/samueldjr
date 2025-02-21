@@ -11,21 +11,24 @@ const skills = [
     icon: Code2,
     description: "Building responsive and performant web applications using modern technologies.",
     technologies: ["React", "Next.js", "TypeScript", "Node.js"],
-    color: "bg-blue-600" // Solid blue color
+    iconColor: "text-blue-500",
+    bgColor: "bg-blue-300/20" // Light blue background
   },
   {
     title: "UI/UX Design",
     icon: Palette,
     description: "Creating intuitive and beautiful user interfaces with attention to detail.",
     technologies: ["Figma", "Adobe XD", "Tailwind CSS", "Framer Motion"],
-    color: "bg-purple-600" // Solid purple color
+    iconColor: "text-purple-500",
+    bgColor: "bg-purple-300/20" // Light purple background
   },
   {
     title: "Full Stack",
     icon: Globe2,
     description: "End-to-end development from database design to frontend implementation.",
     technologies: ["PostgreSQL", "MongoDB", "Express", "REST APIs"],
-    color: "bg-green-500" // Solid light green color
+    iconColor: "text-green-500",
+    bgColor: "bg-green-300/20" // Light green background
   },
 ]
 
@@ -62,11 +65,12 @@ export default function About() {
     }
   }
   
+  // Updated card variants to come from left side
   const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, x: -40 },
     visible: { 
       opacity: 1, 
-      y: 0,
+      x: 0,
       transition: { duration: 0.7, ease: "easeOut" }
     }
   }
@@ -114,7 +118,7 @@ export default function About() {
               className="space-y-6"
             >
               <motion.h3 variants={itemVariants} className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                Creative Developer & Designer
+                Hi, I'm Samuel
               </motion.h3>
               
               <motion.p variants={itemVariants} className="text-gray-300 text-lg">
@@ -137,7 +141,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* Skills Cards with Staggered Animation */}
+        {/* Skills Cards with Staggered Animation 
         <motion.h3
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -155,33 +159,27 @@ export default function About() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {skills.map((skill, index) => {
-            // Extra color for the 4th card if needed
-            const iconColors = ["bg-blue-200", "bg-purple-200", "bg-green-200", "bg-orange-500"];
-            const iconColor = skill.color || iconColors[index % iconColors.length];
-            
-            return (
-              <motion.div
-                key={skill.title}
-                variants={cardVariants}
-                className="bg-[#232323] rounded-lg p-8 hover:bg-[#2a2a2a] transition-all duration-300 border border-white/5 hover:border-white/10 hover:shadow-lg"
-              >
-                <div className={`mb-5 ${iconColor} p-3 rounded-lg w-fit`}>
-                  <skill.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{skill.title}</h3>
-                <p className="text-gray-400 mb-5">{skill.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {skill.technologies.map((tech) => (
-                    <span key={tech} className="bg-white/5 text-sm px-3 py-1 rounded-full border border-white/10">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+          {skills.map((skill, index) => (
+            <motion.div
+              key={skill.title}
+              variants={cardVariants}
+              className="bg-white/10 rounded-lg p-8 hover:bg-white/15 transition-all duration-300 border border-white/5 hover:border-white/10 hover:shadow-lg"
+            >
+              <div className={`mb-5 ${skill.bgColor} p-3 rounded-lg w-fit`}>
+                <skill.icon className={`w-8 h-8 ${skill.iconColor}`} />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">{skill.title}</h3>
+              <p className="text-gray-400 mb-5">{skill.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {skill.technologies.map((tech) => (
+                  <span key={tech} className="bg-white/5 text-sm px-3 py-1 rounded-full border border-white/10">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div> */}
       </div>
     </section>
   )
