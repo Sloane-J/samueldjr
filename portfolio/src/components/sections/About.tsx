@@ -125,13 +125,8 @@ export default function About() {
                 My journey began with a passion for solving problems through code, evolving into a multidisciplinary approach that encompasses both development and design. I believe great products emerge at the intersection of technical excellence and thoughtful user experience.
               </motion.p>
               
-              <motion.div variants={itemVariants} className="pt-2">
-                <h4 className="text-xl font-semibold mb-3">Education</h4>
-                <p className="text-gray-400">BSc in Computer Science, University of Technology, 2018</p>
-              </motion.div>
-              
               <motion.div variants={itemVariants} className="flex gap-4 pt-2">
-                <a href="#contact" className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-md font-medium text-white hover:opacity-90 transition-opacity">
+                <a href="#contact" className="inline-block bg-orange-700 text-white px-8 py-3 rounded-md font-medium hover:bg-orange-600 transition-colors">
                   Contact Me
                 </a>
                 <a href="/resume.pdf" className="px-6 py-3 bg-white/10 rounded-md font-medium text-white hover:bg-white/15 transition-colors">
@@ -162,7 +157,7 @@ export default function About() {
         >
           {skills.map((skill, index) => {
             // Extra color for the 4th card if needed
-            const iconColors = ["bg-blue-600", "bg-purple-600", "bg-green-500", "bg-orange-500"];
+            const iconColors = ["bg-blue-200", "bg-purple-200", "bg-green-200", "bg-orange-500"];
             const iconColor = skill.color || iconColors[index % iconColors.length];
             
             return (
