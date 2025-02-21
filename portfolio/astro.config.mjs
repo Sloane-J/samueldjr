@@ -9,5 +9,11 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
   ],
+  vite: {
+    resolve: {
+      alias: {
+        '@': '/src'
+      }
+    }
+  }
 });
-

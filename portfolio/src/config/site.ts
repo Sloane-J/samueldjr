@@ -16,7 +16,7 @@ export const siteConfig = {
       email: "contact@example.com",
     },
     metadata: {
-      keywords: ["Full Stack Developer", "Web Development", "React", "Next.js", "TypeScript", "UI/UX Design"],
+      keywords: ["Full Stack Developer", "Web Development", "React", "PHP", "TypeScript", "Wireframe"],
       themeColor: "#121212",
     },
     navigation: {

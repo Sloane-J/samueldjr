@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 
 export default function BackgroundAnimation() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -49,8 +49,7 @@ export default function BackgroundAnimation() {
         if (this.y > canvas.height) this.y = 0
       }
 
-      draw() {
-        if (!ctx) return
+      draw(ctx: CanvasRenderingContext2D) {
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         ctx.fillStyle = this.color
@@ -59,27 +58,25 @@ export default function BackgroundAnimation() {
     }
 
     // Create particles
-    const particles: Particle[] = []
-    for (let i = 0; i < 50; i++) {
-      particles.push(new Particle())
-    }
+    const particles: Particle[] = Array.from({ length: 50 }, () => new Particle())
+
+    let animationFrameId: number
 
     // Animation loop
     const animate = () => {
-      if (!ctx) return
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-
       particles.forEach((particle) => {
         particle.update()
-        particle.draw()
+        particle.draw(ctx)
       })
-
-      requestAnimationFrame(animate)
+      animationFrameId = requestAnimationFrame(animate)
     }
     animate()
 
+    // Cleanup function
     return () => {
       window.removeEventListener("resize", setSize)
+      cancelAnimationFrame(animationFrameId)
     }
   }, [])
 
@@ -93,4 +90,3 @@ export default function BackgroundAnimation() {
     />
   )
 }
-
