@@ -19,7 +19,7 @@ const services = [
     tools: "Google Analytics, SEMrush, Ahrefs, Moz, Schema Markup"
   },
   {
-    title: "UI/UX Design",
+    title: "Wireframe Design",
     icon: PenTool,
     iconColor: "#E91E63", // Pink
     description: "User-centered design solutions that enhance user experience.",

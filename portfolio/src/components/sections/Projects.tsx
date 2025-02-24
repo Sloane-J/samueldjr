@@ -1,9 +1,6 @@
-"use client"
-
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Github, ExternalLink, Folder } from "lucide-react"
-import ProjectFilter from "./ProjectFilter"
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Github, ExternalLink } from 'lucide-react';
 
 const projects = [
   {
@@ -12,7 +9,7 @@ const projects = [
     tags: ["Next.js", "TypeScript", "Stripe", "Tailwind CSS"],
     liveUrl: "https://example.com",
     githubUrl: "https://github.com",
-    image: "/placeholder.svg",
+    image: "https://picsum.photos/200/300.webp",
   },
   {
     title: "AI Content Generator",
@@ -20,7 +17,7 @@ const projects = [
     tags: ["React", "Python", "OpenAI", "Flask"],
     liveUrl: "https://example.com",
     githubUrl: "https://github.com",
-    image: "/placeholder.svg",
+    image: "https://picsum.photos/seed/picsum/200/300",
   },
   {
     title: "Task Management App",
@@ -28,83 +25,113 @@ const projects = [
     tags: ["Vue.js", "Node.js", "MongoDB", "Socket.io"],
     liveUrl: "https://example.com",
     githubUrl: "https://github.com",
-    image: "/placeholder.svg",
+    image: "https://picsum.photos/200/300?grayscale",
   },
-]
+];
 
-export default function Projects() {
-  const [filteredProjects, setFilteredProjects] = useState(projects)
+const Project = ({ project, index }) => {
+  const ref = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  // Smoother transform values
+  const y = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [index === 0 ? 0 : 200, -200]
+  );
+
+  // Add opacity transform for smoother transitions
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.8, 1],
+    [0, 1, 1, 0]
+  );
 
   return (
-    <section id="projects" className="py-20 bg-[#1a1a1a]">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
-          <p className="text-gray-400 text-lg">Some of my recent work that showcases my skills and experience</p>
-        </motion.div>
-
-        <ProjectFilter projects={projects} onFilter={setFilteredProjects} />
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {filteredProjects.map((project, index) => (
-            <motion.article
-              key={project.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#232323] rounded-lg overflow-hidden group"
-            >
-              <div className="relative aspect-video overflow-hidden">
-                <img
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title}
-                  className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors"
-                  >
-                    <Github className="w-6 h-6" />
-                  </a>
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors"
-                  >
-                    <ExternalLink className="w-6 h-6" />
-                  </a>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
-                  <Folder className="w-5 h-5 text-gray-400" />
-                  {project.title}
-                </h3>
-                <p className="text-gray-400 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="text-sm px-3 py-1 bg-white/5 rounded-full">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.article>
-          ))}
+    <motion.section 
+      ref={ref}
+      style={{ y }}
+      className="sticky top-0 h-screen flex items-center justify-center overflow-hidden"
+    >
+      <div className="absolute inset-4 bg-[#1a1a1a] rounded-2xl overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover opacity-40"
+          />
         </div>
-      </div>
-    </section>
-  )
-}
 
+        <motion.div 
+          style={{ opacity }}
+          className="relative h-full container mx-auto px-8 flex flex-col md:flex-row items-center gap-8"
+        >
+          <div className="w-full md:w-1/2 space-y-6">
+            <h2 className="text-4xl md:text-6xl font-bold">{project.title}</h2>
+            <p className="text-xl text-gray-300">{project.description}</p>
+            <div className="flex flex-wrap gap-3">
+              {project.tags.map((tag) => (
+                <span 
+                  key={tag} 
+                  className="text-sm px-4 py-2 bg-white/5 rounded-full"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <div className="flex gap-4">
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
+              >
+                <Github className="w-5 h-5" />
+                View Code
+              </a>
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
+              >
+                <ExternalLink className="w-5 h-5" />
+                Live Demo
+              </a>
+            </div>
+          </div>
+          <div className="w-full md:w-1/2">
+            <div className="relative aspect-video rounded-xl overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </motion.section>
+  );
+};
+
+const Projects = () => {
+  return (
+    <div 
+      className="bg-black relative min-h-screen"
+      style={{ 
+        height: `${100 * (projects.length + 0.5)}vh`
+      }}
+    >
+      {projects.map((project, index) => (
+        <Project key={project.title} project={project} index={index} />
+      ))}
+    </div>
+  );
+};
+
+export default Projects;
