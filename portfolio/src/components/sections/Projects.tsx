@@ -62,7 +62,7 @@ const Project = ({ project, index }) => {
           <img
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover opacity-100"
           />
         </div>
 

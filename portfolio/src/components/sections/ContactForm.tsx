@@ -1,21 +1,19 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Send, CheckCircle, XCircle } from "lucide-react"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Send, CheckCircle, XCircle, PhoneCall } from "lucide-react";
 
 interface FormData {
-  name: string
-  email: string
-  message: string
+  name: string;
+  email: string;
+  message: string;
 }
 
 interface FormErrors {
-  name?: string
-  email?: string
-  message?: string
+  name?: string;
+  email?: string;
+  message?: string;
 }
 
 export default function ContactForm() {
@@ -23,154 +21,90 @@ export default function ContactForm() {
     name: "",
     email: "",
     message: "",
-  })
-  const [errors, setErrors] = useState<FormErrors>({})
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
+  });
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   const validateForm = (): boolean => {
-    const newErrors: FormErrors = {}
+    const newErrors: FormErrors = {};
 
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required"
-    }
-
+    if (!formData.name.trim()) newErrors.name = "Name is required";
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required"
+      newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Invalid email address"
+      newErrors.email = "Invalid email address";
     }
+    if (!formData.message.trim()) newErrors.message = "Message is required";
 
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required"
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!validateForm()) return
-
-    setStatus("submitting")
+    e.preventDefault();
+    if (!validateForm()) return;
+    setStatus("submitting");
 
     try {
-      // Replace with your form submission logic
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      setStatus("success")
-      setFormData({ name: "", email: "", message: "" })
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      setStatus("error")
+      setStatus("error");
     }
-  }
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium mb-2">
-          Name
-        </label>
+    <div className="bg-[#2a2a2a] text-white p-8 rounded-2xl shadow-lg max-w-lg mx-auto space-y-6">
+      <h2 className="text-3xl font-bold text-center">Let's Connect</h2>
+      <p className="text-lg text-center">Book a call or send us a message.</p>
+      
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
-          id="name"
+          placeholder="Your Name"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className={`w-full px-4 py-2 bg-[#2a2a2a] rounded-lg border transition-colors ${
-            errors.name ? "border-red-500" : "border-gray-700"
-          } focus:outline-none focus:border-white`}
-          placeholder="Your name"
+          className="w-full p-3 bg-gray-800 rounded-lg border border-gray-700 focus:border-white focus:outline-none text-lg"
         />
-        {errors.name && (
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-red-500 text-sm mt-1"
-          >
-            {errors.name}
-          </motion.p>
-        )}
-      </div>
+        {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
 
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium mb-2">
-          Email
-        </label>
         <input
           type="email"
-          id="email"
+          placeholder="Your Email"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className={`w-full px-4 py-2 bg-[#2a2a2a] rounded-lg border transition-colors ${
-            errors.email ? "border-red-500" : "border-gray-700"
-          } focus:outline-none focus:border-white`}
-          placeholder="your@email.com"
+          className="w-full p-3 bg-gray-800 rounded-lg border border-gray-700 focus:border-white focus:outline-none text-lg"
         />
-        {errors.email && (
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-red-500 text-sm mt-1"
-          >
-            {errors.email}
-          </motion.p>
-        )}
-      </div>
+        {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
 
-      <div>
-        <label htmlFor="message" className="block text-sm font-medium mb-2">
-          Message
-        </label>
         <textarea
-          id="message"
+          placeholder="Your Message"
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          className="w-full p-3 bg-gray-800 rounded-lg border border-gray-700 focus:border-white focus:outline-none text-lg resize-none"
           rows={4}
-          className={`w-full px-4 py-2 bg-[#2a2a2a] rounded-lg border transition-colors ${
-            errors.message ? "border-red-500" : "border-gray-700"
-          } focus:outline-none focus:border-white resize-none`}
-          placeholder="Your message"
         />
-        {errors.message && (
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-red-500 text-sm mt-1"
-          >
-            {errors.message}
-          </motion.p>
-        )}
-      </div>
+        {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
 
+        <motion.button
+          type="submit"
+          disabled={status === "submitting"}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className="w-full py-4 rounded-xl font-semibold flex items-center justify-center gap-2 text-lg transition-all shadow-md bg-white text-[#121212] hover:bg-gray-200"
+        >
+          {status === "submitting" ? "Sending..." : status === "success" ? <><CheckCircle className="w-5 h-5" /> Sent Successfully</> : status === "error" ? <><XCircle className="w-5 h-5" /> Error Sending</> : <><Send className="w-5 h-5" /> Send Message</>}
+        </motion.button>
+      </form>
+      
       <motion.button
-        type="submit"
-        disabled={status === "submitting"}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className={`w-full py-3 rounded-lg font-medium flex items-center justify-center gap-2 ${
-          status === "submitting" ? "bg-gray-600 cursor-not-allowed" : "bg-white text-[#121212] hover:bg-gray-200"
-        } transition-colors`}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="w-full py-4 rounded-xl font-semibold flex items-center justify-center gap-2 text-lg transition-all shadow-md bg-blue-500 hover:bg-blue-600 text-white"
       >
-        {status === "submitting" ? (
-          "Sending..."
-        ) : status === "success" ? (
-          <>
-            <CheckCircle className="w-4 h-4" />
-            Sent Successfully
-          </>
-        ) : status === "error" ? (
-          <>
-            <XCircle className="w-4 h-4" />
-            Error Sending
-          </>
-        ) : (
-          <>
-            <Send className="w-4 h-4" />
-            Send Message
-          </>
-        )}
+        <PhoneCall className="w-6 h-6" /> Book a Call
       </motion.button>
-    </form>
-  )
+    </div>
+  );
 }
-
