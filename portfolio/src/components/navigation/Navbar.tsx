@@ -30,7 +30,7 @@ export default function Navbar() {
         <div className="container mx-auto px-4 py-4">
           <nav className="flex items-center justify-between">
             <motion.a href="/" className="text-xl font-bold" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              Portfolio
+              SDJ
             </motion.a>
             <ul className="hidden md:flex items-center gap-8">
               {["Home", "About", "Services", "Testimonials", "Contact"].map((item) => (

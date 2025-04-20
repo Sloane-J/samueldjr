@@ -4,7 +4,7 @@ import { Github, ExternalLink } from 'lucide-react';
 
 const projects = [
   {
-    title: "E-Commerce Platform",
+    title: "Affeliate Nexus",
     description: "A full-stack e-commerce solution with real-time inventory management and payment processing.",
     tags: ["Next.js", "TypeScript", "Stripe", "Tailwind CSS"],
     liveUrl: "https://example.com",
@@ -12,9 +12,17 @@ const projects = [
     image: "https://picsum.photos/200/300.webp",
   },
   {
-    title: "AI Content Generator",
+    title: "Web Blog",
     description: "An AI-powered application that generates high-quality content using machine learning algorithms.",
     tags: ["React", "Python", "OpenAI", "Flask"],
+    liveUrl: "https://example.com",
+    githubUrl: "https://github.com",
+    image: "https://picsum.photos/seed/picsum/200/300",
+  },
+  {
+    title: "Web Developer Portfolio",
+    description: "An AI-powered application that generates high-quality content using machine learning algorithms.",
+    tags: ["Astrojs", "React", "Tailwinf CSS", "Framer Motion, Magic UI"],
     liveUrl: "https://example.com",
     githubUrl: "https://github.com",
     image: "https://picsum.photos/seed/picsum/200/300",
@@ -57,19 +65,14 @@ const Project = ({ project, index }) => {
       style={{ y }}
       className="sticky top-0 h-screen flex items-center justify-center overflow-hidden"
     >
-      <div className="absolute inset-4 bg-[#1a1a1a] rounded-2xl overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover opacity-100"
-          />
-        </div>
 
+      <div className="absolute inset-4 bg-[#1a1a1a] rounded-sm overflow-hidden border-t border-[#616161]">
+        
         <motion.div 
           style={{ opacity }}
           className="relative h-full container mx-auto px-8 flex flex-col md:flex-row items-center gap-8"
         >
+          
           <div className="w-full md:w-1/2 space-y-6">
             <h2 className="text-4xl md:text-6xl font-bold">{project.title}</h2>
             <p className="text-xl text-gray-300">{project.description}</p>
@@ -77,7 +80,7 @@ const Project = ({ project, index }) => {
               {project.tags.map((tag) => (
                 <span 
                   key={tag} 
-                  className="text-sm px-4 py-2 bg-white/5 rounded-full"
+                  className="text-sm px-4 py-2 bg-white/5 rounded-sm"
                 >
                   {tag}
                 </span>
@@ -88,7 +91,7 @@ const Project = ({ project, index }) => {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-sm hover:bg-white/20 transition-colors"
               >
                 <Github className="w-5 h-5" />
                 View Code
@@ -97,7 +100,7 @@ const Project = ({ project, index }) => {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-sm hover:bg-white/20 transition-colors"
               >
                 <ExternalLink className="w-5 h-5" />
                 Live Demo
@@ -122,7 +125,7 @@ const Project = ({ project, index }) => {
 const Projects = () => {
   return (
     <div 
-      className="bg-black relative min-h-screen"
+      className="bg-[#1a1a1a] relative min-h-screen"
       style={{ 
         height: `${100 * (projects.length + 0.5)}vh`
       }}

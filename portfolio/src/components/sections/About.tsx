@@ -3,7 +3,7 @@
 import React from "react"
 import { motion } from "framer-motion"
 import { Code2, Palette, Globe2 } from "lucide-react"
-import Skills from "./Skills"
+//import Skills from "./Skills"
 
 const skills = [
   {
@@ -118,11 +118,11 @@ export default function About() {
               className="space-y-6"
             >
               <motion.h3 variants={itemVariants} className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                Hi, I'm Samuel
+                Hi, I'm Samuel Dorkey Jr
               </motion.h3>
               
               <motion.p variants={itemVariants} className="text-gray-300 text-lg">
-                With over 5 years of experience in web development and design, I blend technical expertise with creative vision to build digital experiences that stand out.
+                With over 3 years of experience in web development and design, I blend technical expertise with creative vision to build digital experiences that stand out.
               </motion.p>
               
               <motion.p variants={itemVariants} className="text-gray-400">
@@ -131,7 +131,7 @@ export default function About() {
               
               <motion.div variants={itemVariants} className="flex gap-4 pt-2">
                 <a href="#contact" className="inline-block bg-orange-700 text-white px-8 py-3 rounded-md font-medium hover:bg-orange-600 transition-colors">
-                  Contact Me
+                Contact Me 
                 </a>
                 <a href="/resume.pdf" className="px-6 py-3 bg-white/10 rounded-md font-medium text-white hover:bg-white/15 transition-colors">
                   View Resume

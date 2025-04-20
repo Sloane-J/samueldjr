@@ -5,10 +5,10 @@ import { Github, Twitter, Linkedin, Mail } from "lucide-react"
 
 export default function Footer() {
   const socialLinks = [
-    { icon: Github, href: "https://github.com" },
-    { icon: Twitter, href: "https://twitter.com" },
-    { icon: Linkedin, href: "https://linkedin.com" },
-    { icon: Mail, href: "mailto:contact@example.com" },
+    { icon: Github, href: "https://github.com/Sloane-J" },
+    { icon: Twitter, href: "https://twitter.com/sloanejnr" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/samueldorkey9a88901bb/" },
+    { icon: Mail, href: "mailto:samueldorkeyjr@gmail.com" },
   ]
 
   return (
@@ -22,7 +22,7 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="text-2xl font-bold mb-2">Portfolio</h3>
+              <h3 className="text-2xl font-bold mb-2">SDJ</h3>
               <p className="text-gray-400">Building digital experiences</p>
             </motion.div>
 
@@ -54,7 +54,7 @@ export default function Footer() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm"
           >
-            © {new Date().getFullYear()} Your Name. All rights reserved.
+            © {new Date().getFullYear()} Samuel D. Jr. All rights reserved.
           </motion.div>
         </div>
       </div>

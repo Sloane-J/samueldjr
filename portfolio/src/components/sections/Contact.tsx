@@ -75,7 +75,7 @@ export default function ContactCard() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, ease: "easeOut" }}
-        className="bg-[#232323] rounded-2xl p-20 shadow-lg max-w-7xl w-full mx-auto text-center flex flex-col items-center justify-center min-h-[80vh] relative"
+        className="p-20 max-w-7xl w-full mx-auto text-center flex flex-col items-center justify-center min-h-[80vh] relative"
       >
         {/* Animated background shapes */}
         {shapes.map((shape, index) => (
@@ -147,8 +147,8 @@ export default function ContactCard() {
           className="grid grid-cols-3 gap-8 mb-14 w-full max-w-4xl"
         >
           {[
-            { icon: Clock, text: "30 Minute Session" },
-            { icon: Calendar, text: "Pick Your Time" },
+            { icon: Calendar, text: "Pick Your Appointment Date" },
+            { icon: Clock, text: "At Your Own Time" },
             { icon: MessageSquare, text: "Discuss Your Needs" }
           ].map((item, index) => (
             <motion.div 

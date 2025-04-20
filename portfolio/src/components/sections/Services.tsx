@@ -9,7 +9,7 @@ const services = [
     icon: Laptop,
     iconColor: "#FF5733", // Orange
     description: "Custom web applications built with modern frameworks and best practices.",
-    tools: "React, Next.js, TypeScript, Tailwind CSS, Framer Motion"
+    tools: "Astrojs, React, TypeScript, Tailwind CSS, Framer Motion, Hugo"
   },
   {
     title: "SEO Optimization",
@@ -30,7 +30,7 @@ const services = [
     icon: Database,
     iconColor: "#2196F3", // Blue
     description: "Robust and scalable backend solutions for your applications.",
-    tools: "Node.js, Express, MongoDB, PostgreSQL, Firebase"
+    tools: "Laravel, PHP, MySql, Supabase, Firebase, Sqlite"
   },
 ]
 
@@ -151,7 +151,7 @@ export default function Services() {
             
             <motion.p 
               variants={textItemVariants}
-              className="text-gray-400 mb-8"
+              className="text-gray-500 mb-8"
             >
               Every project is approached with a strategic mindset, ensuring that the solutions I provide not only meet your immediate needs but also support your long-term business objectives.
             </motion.p>
