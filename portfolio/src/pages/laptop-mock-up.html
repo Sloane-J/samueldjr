@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modern MacBook Pro Mockup</title>
+  <style>
+    body {
+      background: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    /* The laptop container */
+    .laptop-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      box-shadow: inset 0 0 0 2px #c8cacb;
+    }
+    
+    /* The laptop with borders */
+    .laptop {
+      transform-origin: 0 0;
+      transform: scale(.6) translate(-50%);
+      left: 50%;
+      position: absolute;
+      width: 1366px;
+      height: 800px;
+      border-radius: 20px;
+      border-style: solid;
+      border-color: #0d0d0d;
+      border-width: 12px 12px 80px;
+      background-color: #1a1a1a;
+      box-shadow: inset 0 0 0 2px #c8cacb;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .laptop:hover {
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* The keyboard base of the laptop */
+    .laptop:after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 1600px;
+      height: 50px;
+      margin: 80px 0 0 -110px;
+      background: radial-gradient(circle at center, #e2e3e4 85%, #c8cacb 100%);
+      border: solid #a0a3a7;
+      border-radius: 2px 2px 12px 12px;
+      border-width: 1px 2px 0 2px;
+      box-shadow: inset 0 -2px 8px 0 #6c7074;
+    }
+    
+    /* The trackpad */
+    .laptop:before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 250px;
+      height: 30px;
+      bottom: -110px;
+      left: 50%;
+      transform: translate(-50%);
+      z-index: 1;
+      
+      background: #e2e3e4;
+      border-radius: 0 0 10px 10px;
+      box-shadow: inset 0 0 4px 2px #babdbf;
+    }
+    
+    /* Camera notch */
+    .camera {
+      position: absolute;
+      width: 120px;
+      height: 20px;
+      background-color: #0d0d0d;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 0 0 12px 12px;
+      z-index: 10;
+    }
+    
+    .camera::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background-color: #333;
+      border-radius: 50%;
+      top: 3px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    /* The screen (or content) of the device */
+    .laptop .content {
+      width: 1366px;
+      height: 800px;
+      overflow: hidden;
+      border: none;
+      border-radius: 4px;
+      background: #000;
+    }
+    
+    .laptop .content iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    
+    /* Make laptop responsive on smaller screens */
+    @media only screen and (max-width: 1024px) {
+      .laptop {
+        transform: scale(.5) translate(-50%);
+      }
+    }
+    
+    @media only screen and (max-width: 768px) {
+      .laptop {
+        transform: scale(.4) translate(-50%);
+      }
+    }
+    
+    @media only screen and (max-width: 480px) {
+      .laptop {
+        transform: scale(.3) translate(-50%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="laptop-container">
+    <div class="laptop">
+      <div class="camera"></div>
+      <div class="content">
+        <iframe src="https://affiliate-nexus.vercel.app/" title="Website Preview"></iframe>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
