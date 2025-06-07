@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Laptop, Smartphone, Search, Rocket, PenTool, Database } from "lucide-react"
+import { Laptop, Search, Rocket, PenTool, Database } from "lucide-react"
 
 const services = [
   {
@@ -78,7 +78,7 @@ export default function Services() {
   }
 
   return (
-    <section id="services" className="py-20">
+    <section id="services" className="py-20 bg-[#080807]">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -87,8 +87,8 @@ export default function Services() {
           transition={{ duration: 0.5 }}
           className="max-w-4xl mx-auto text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Services</h2>
-          <p className="text-gray-400 text-lg">Comprehensive solutions for your digital needs</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#D1D1C7]">Services</h2>
+          <p className="text-[#D1D1C7] text-lg">Comprehensive solutions for your digital needs</p>
         </motion.div>
 
         <div className="max-w-6xl mx-auto grid md:grid-cols-12 gap-12">
@@ -110,11 +110,11 @@ export default function Services() {
                 <div className="mb-4 inline-flex p-3 rounded-full" style={{ backgroundColor: `${service.iconColor}20` }}>
                   <service.icon className="w-8 h-8" style={{ color: service.iconColor }} />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                <p className="text-gray-400 text-sm mb-3">{service.description}</p>
+                <h3 className="text-xl text-[#D1D1C7] font-semibold mb-2">{service.title}</h3>
+                <p className="text-[#D1D1C7] text-sm mb-3">{service.description}</p>
                 <div className="mt-3 pt-3 border-t border-gray-700">
-                  <p className="text-xs font-medium uppercase tracking-wider text-gray-500 mb-2">Tools & Technologies</p>
-                  <p className="text-gray-300 text-xs">{service.tools}</p>
+                  <p className="text-xs font-medium uppercase tracking-wider text-[#D1D1C7] mb-2">Tools & Technologies</p>
+                  <p className="text-[#D1D1C7] text-xs">{service.tools}</p>
                 </div>
               </motion.div>
             ))}
@@ -130,28 +130,28 @@ export default function Services() {
           >
             <motion.h3 
               variants={textItemVariants}
-              className="text-2xl font-bold mb-6"
+              className="text-2xl font-bold mb-6 text-[#D1D1C7]"
             >
               Elevate Your Digital Presence
             </motion.h3>
             
             <motion.p 
               variants={textItemVariants}
-              className="text-gray-300 mb-5"
+              className="mb-5 text-[#D1D1C7]"
             >
               In today's competitive landscape, your digital presence is more important than ever. I provide end-to-end solutions that help businesses stand out and achieve their goals.
             </motion.p>
             
             <motion.p 
               variants={textItemVariants}
-              className="text-gray-400 mb-5"
+              className="text-[#D1D1C7] mb-5"
             >
               From conceptualization to deployment, I handle every aspect of the development process with meticulous attention to detail and a focus on delivering exceptional results.
             </motion.p>
             
             <motion.p 
               variants={textItemVariants}
-              className="text-gray-500 mb-8"
+              className="text-[#D1D1C7] mb-8"
             >
               Every project is approached with a strategic mindset, ensuring that the solutions I provide not only meet your immediate needs but also support your long-term business objectives.
             </motion.p>
@@ -161,7 +161,7 @@ export default function Services() {
             >
               <a 
                 href="#contact" 
-                className="inline-flex items-center bg-gradient-to-r from-orange-600 to-orange-400 text-white px-6 py-3 rounded-md font-medium hover:from-orange-400 hover:to-orange-600 transition-all"
+                className="inline-flex items-center bg-gradient-to-r from-orange-600 to-orange-400 text-white px-6 py-3 rounded-full font-medium hover:from-orange-400 hover:to-orange-600 transition-all"
               >
                 <Rocket className="w-5 h-5 mr-2" />
                 Start Your Project

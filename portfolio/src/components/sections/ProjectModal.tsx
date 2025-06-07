@@ -37,7 +37,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
-            className="bg-[#1a1a1a] rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto"
+            className="bg-[#080807] rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto"
           >
             {/* Header Image */}
             <div className="relative h-[300px]">

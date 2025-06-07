@@ -40,7 +40,7 @@ export default function Testimonials() {
   }
 
   return (
-    <section id="testimonials" className="py-12 sm:py-16 lg:py-20 bg-[#1a1a1a] overflow-hidden">
+    <section id="testimonials" className="py-12 sm:py-16 lg:py-20 bg-[#080807] overflow-hidden">
       <div className="container mx-auto px-4 mb-8 sm:mb-12 lg:mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

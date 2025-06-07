@@ -32,8 +32,8 @@ export default function Navbar() {
             <motion.a href="/" className="text-xl font-bold" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               SDJ
             </motion.a>
-            <ul className="hidden md:flex items-center gap-8">
-              {["Home", "About", "Services", "Testimonials", "Contact"].map((item) => (
+            <ul className="hidden md:flex items-center gap-4">
+              {["Home", "Services", "About", "Testimonials", "Contact"].map((item) => (
                 <motion.li key={item} whileHover={{ y: -2 }}>
                   <a href={`#${item.toLowerCase()}`} className="text-gray-300 hover:text-white transition-colors">
                     {item}

@@ -11,6 +11,9 @@ export default {
         primary: 'rgb(var(--primary))',
         muted: 'rgb(var(--muted))',
       },
+      fontSize:{
+        '10xl': '10rem', // Adjust this value as needed, e.g., '12rem', '14rem', etc.
+      },
       animation: {
         'gradient': 'gradient 8s linear infinite',
       },

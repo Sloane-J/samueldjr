@@ -12,7 +12,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-[#1a1a1a] py-12">
+    <footer className="bg-[#080807] py-12">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">

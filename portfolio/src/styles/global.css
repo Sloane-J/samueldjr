@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     --background: 18 18 18;
@@ -16,7 +16,7 @@
     --color-4: 195 100% 63%;
     --color-5: 90 100% 63%;
   }
- 
+
   .dark {
     --background: 18 18 18;
     --card: 30 30 30;
@@ -26,8 +26,11 @@
     --color-4: 195 100% 63%;
     --color-5: 90 100% 63%;
   }
+  .theme {
+    --animate-aurora: aurora 8s ease-in-out infinite alternate;
+  }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
@@ -35,5 +38,30 @@
   body {
     @apply bg-background text-white;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@theme inline {
+  @keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+    transform: rotate(-5deg) scale(0.9);
+    }
+  25% {
+    background-position: 50% 100%;
+    transform: rotate(5deg) scale(1.1);
+    }
+  50% {
+    background-position: 100% 50%;
+    transform: rotate(-3deg) scale(0.95);
+    }
+  75% {
+    background-position: 50% 0%;
+    transform: rotate(3deg) scale(1.05);
+    }
+  100% {
+    background-position: 0% 50%;
+    transform: rotate(-5deg) scale(0.9);
+    }
   }
 }

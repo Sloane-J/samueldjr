@@ -40,7 +40,7 @@ export default function ScrollToTop() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-white text-[#121212] p-3 rounded-full shadow-lg z-50"
+          className="fixed bottom-8 right-8 bg-orange-500 hover:bg-orange-600 transition-colors text-[#121212] p-3 rounded-full shadow-lg z-50"
         >
           <ArrowUp className="w-6 h-6" />
         </motion.button>

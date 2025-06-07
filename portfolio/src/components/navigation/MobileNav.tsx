@@ -26,7 +26,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 20 }}
-            className="fixed right-0 top-0 bottom-0 w-[250px] bg-[#1a1a1a] p-6"
+            className="fixed right-0 top-0 bottom-0 w-[250px] bg-[#080807] p-6"
             onClick={(e) => e.stopPropagation()}
           >
             <button onClick={onClose} className="absolute top-5 right-5 text-gray-400 hover:text-white">

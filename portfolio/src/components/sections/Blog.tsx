@@ -66,7 +66,7 @@ export default function Blog() {
     selectedCategory === "All" ? blogPosts : blogPosts.filter((post) => post.category === selectedCategory)
 
   return (
-    <section id="blog" className="py-20 bg-[#1a1a1a]">
+    <section id="blog" className="py-20 bg-[#080807]">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

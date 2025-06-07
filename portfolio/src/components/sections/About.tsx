@@ -44,16 +44,16 @@ export default function About() {
       }
     }
   }
-  
+
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { duration: 0.6, ease: "easeOut" }
     }
   }
-  
+
   const cardContainerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -64,19 +64,19 @@ export default function About() {
       }
     }
   }
-  
+
   // Updated card variants to come from left side
   const cardVariants = {
     hidden: { opacity: 0, x: -40 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
       transition: { duration: 0.7, ease: "easeOut" }
     }
   }
 
   return (
-    <section id="about" className="py-20 bg-[#1a1a1a]">
+    <section id="about" className="py-20 bg-[#080807]">
       <div className="container mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -100,7 +100,7 @@ export default function About() {
               className="relative"
             >
               <img
-                src="/images/profile-image.jpg"
+                src="/images/Profile-Pic.jpg"
                 alt="Developer Profile"
                 className="w-full h-auto rounded-xl object-cover"
                 onError={(e) => {
@@ -120,20 +120,23 @@ export default function About() {
               <motion.h3 variants={itemVariants} className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
                 Hi, I'm Samuel Dorkey Jr
               </motion.h3>
-              
+
               <motion.p variants={itemVariants} className="text-gray-300 text-lg">
-                With over 3 years of experience in web development and design, I blend technical expertise with creative vision to build digital experiences that stand out.
+              Driven by a passion for design and development, I transform ideas into live projects, ensuring a seamless journey that delivers a powerful, positive impact on the digital world and your business. My core mission is crafting exceptional web experiences that resonate with users, thanks to a keen eye for detail and a commitment to user-centric principles.
               </motion.p>
-              
+
               <motion.p variants={itemVariants} className="text-gray-400">
-                My journey began with a passion for solving problems through code, evolving into a multidisciplinary approach that encompasses both development and design. I believe great products emerge at the intersection of technical excellence and thoughtful user experience.
+              Beyond web development and design, I often share my freelance journey insights on my blog. My YouTube channel is where I unwind with mobile gameplays, and I also enjoy immersing myself in music and art. When I need a physical challenge, I hit the bouldering wall, or simply relax by nurturing my growing collection of houseplants.
               </motion.p>
-              
+
               <motion.div variants={itemVariants} className="flex gap-4 pt-2">
-                <a href="#contact" className="inline-block bg-orange-700 text-white px-8 py-3 rounded-md font-medium hover:bg-orange-600 transition-colors">
-                Contact Me 
+                <a href="#contact" className="inline-flex items-center gap-2 bg-orange-700 text-white px-8 py-3 rounded-full font-medium hover:bg-orange-600 transition-colors">
+                  Ready to get started?
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
                 </a>
-                <a href="/resume.pdf" className="px-6 py-3 bg-white/10 rounded-md font-medium text-white hover:bg-white/15 transition-colors">
+                <a href="/resume.pdf" className="px-6 py-3 bg-white/10 rounded-full font-medium text-white hover:bg-white/15 transition-colors">
                   View Resume
                 </a>
               </motion.div>

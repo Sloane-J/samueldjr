@@ -6,17 +6,17 @@ export const siteConfig = {
     links: {
       twitter: "https://twitter.com/username",
       github: "https://github.com/username",
-      linkedin: "https://linkedin.com/in/username",
+      linkedin: "https://www.linkedin.com/in/samueldorkey9a88901bb/",
     },
     creator: {
-      name: "Your Name",
+      name: "Samuel Dorket",
       role: "Full Stack Developer",
-      location: "New York, NY",
+      location: "Ghana",
       availability: "Open to opportunities",
-      email: "contact@example.com",
+      email: "samueldorkeyjr@gmail.com",
     },
     metadata: {
-      keywords: ["Full Stack Developer", "Web Development", "React", "PHP", "TypeScript", "Wireframe"],
+      keywords: ["Full Stack Developer", "Web Development", "React", "PHP", "TypeScript", "Wireframe", "Laravel"],
       themeColor: "#121212",
     },
     navigation: {
@@ -31,17 +31,17 @@ export const siteConfig = {
       social: [
         {
           name: "GitHub",
-          href: "https://github.com/username",
+          href: "https://github.com/Sloane-J",
           icon: "Github",
         },
         {
           name: "Twitter",
-          href: "https://twitter.com/username",
+          href: "https://twitter.com/@sloanejnr",
           icon: "Twitter",
         },
         {
           name: "LinkedIn",
-          href: "https://linkedin.com/in/username",
+          href: "https://www.linkedin.com/in/samueldorkey9a88901bb",
           icon: "Linkedin",
         },
       ],

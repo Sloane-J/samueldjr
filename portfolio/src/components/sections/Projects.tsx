@@ -5,31 +5,31 @@ import { Github, ExternalLink } from 'lucide-react';
 const projects = [
   {
     title: "Affeliate Nexus",
-    description: "A full-stack e-commerce solution with real-time inventory management and payment processing.",
+    description: "Affiliate Nexus is a platform designed to empower individuals through personalized coaching in affiliate marketing and lifestyle optimization. It offers services such as affiliate marketing training, life coaching sessions, and self-paced online courses.",
     tags: ["Next.js", "TypeScript", "Stripe", "Tailwind CSS"],
     liveUrl: "https://example.com",
     githubUrl: "https://github.com",
     image: "https://picsum.photos/200/300.webp",
   },
   {
-    title: "Web Blog",
-    description: "An AI-powered application that generates high-quality content using machine learning algorithms.",
+    title: "Grain and Gradient",
+    description: "Grain & Gradient is a modern digital publication offering a blend of insightful and entertaining content across various topics, including technology, current affairs, entertainment, and more. The website features a range of articles.",
     tags: ["React", "Python", "OpenAI", "Flask"],
     liveUrl: "https://example.com",
     githubUrl: "https://github.com",
     image: "https://picsum.photos/seed/picsum/200/300",
   },
   {
-    title: "Web Developer Portfolio",
-    description: "An AI-powered application that generates high-quality content using machine learning algorithms.",
+    title: "Q-Vault",
+    description: "Q-Vault is a web-based platform designed to streamline the examination process for educational institutions. It offers a comprehensive suite of tools for administrators, educators, and students, aiming to enhance efficiency, security, and user experience.",
     tags: ["Astrojs", "React", "Tailwind CSS", "Framer Motion", "Magic UI"],
     liveUrl: "https://example.com",
     githubUrl: "https://github.com",
     image: "https://picsum.photos/seed/picsum/200/300",
   },
   {
-    title: "Task Management App",
-    description: "A collaborative task management tool with real-time updates and team collaboration features.",
+    title: "Peer Tech Konnect",
+    description: "Peer Tech Konnect is a web based Learning Management System (LMS) designed to connect students, tutors, and administrators in a unified education environment. It offers user authentication, course enrollment, tutor approvals, discussions, assignments, quizzes, grading, analytics, and real-time email notifications. With dashboards tailored for each role and tools for progress tracking and communication, the system streamlines digital learning from enrollment to certification.",
     tags: ["Vue.js", "Node.js", "MongoDB", "Socket.io"],
     liveUrl: "https://example.com",
     githubUrl: "https://github.com",
@@ -68,13 +68,14 @@ const Project = ({ project, index }) => {
 
   return (
     <motion.section 
+    id="projects"
       ref={ref}
       style={{ y }}
-      className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-2 sm:px-4"
+      className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-2 sm:px-4 bg=[#080807]"
     >
       <motion.div 
         style={{ opacity, scale }}
-        className="w-full lg:w-[95%] xl:w-[90%] h-[90vh] sm:h-[85vh] mx-auto bg-gradient-to-br from-[#1a1a1a] to-[#252525] rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative"
+        className="w-full lg:w-[95%] xl:w-[90%] h-[90vh] sm:h-[85vh] mx-auto bg-gradient-to-br from-[#080807] to-[#252525] rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative"
       >
         {/* Subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/40 z-10"></div>

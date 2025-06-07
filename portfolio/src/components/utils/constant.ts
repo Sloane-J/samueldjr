@@ -12,17 +12,17 @@ export const NAV_LINKS = [
   export const SOCIAL_LINKS = [
     {
       platform: "GitHub",
-      url: "https://github.com",
+      url: "https://github.com/Sloane-J",
       icon: "Github",
     },
     {
       platform: "LinkedIn",
-      url: "https://linkedin.com",
+      url: "https://www.linkedin.com/in/samueldorkey9a88901bb",
       icon: "Linkedin",
     },
     {
       platform: "Twitter",
-      url: "https://twitter.com",
+      url: "https://twitter.com/@sloanejnr",
       icon: "Twitter",
     },
   ]

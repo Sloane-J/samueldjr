@@ -58,7 +58,7 @@ export default function ContactCard() {
   };
 
   // Staggered text animation for heading
-  const headingWords = "Let's Work Together".split(" ");
+  const headingWords = "Looking For That Unfair Advantage?".split(" ");
   
   // Background shapes animation
   const shapes = [
@@ -69,7 +69,7 @@ export default function ContactCard() {
   ];
 
   return (
-    <section id="contact" className="py-12 md:py-20 flex items-center justify-center relative overflow-hidden">
+    <section id="contact" className="py-12 md:py-20 flex items-center justify-center relative overflow-hidden bg-[#1a1a1a]">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -133,9 +133,9 @@ export default function ContactCard() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-gray-300 text-lg md:text-2xl lg:text-3xl max-w-4xl mb-10 md:mb-14 px-4"
-        >
-          Ready to take your project to the next level? Get in touch today and let's make something amazing together.
+          className="text-gray-300 text-md max-w-4xl mb-10 md:mb-14 px-4"
+>
+          Let's Make It Happen!
         </motion.p>
         
         {/* Features */}
@@ -149,7 +149,7 @@ export default function ContactCard() {
           {[
             { icon: Calendar, text: "Pick Your Appointment Date" },
             { icon: Clock, text: "At Your Own Time" },
-            { icon: MessageSquare, text: "Discuss Your Needs" }
+            { icon: MessageSquare, text: "Let's Discuss Your Needs" }
           ].map((item, index) => (
             <motion.div 
               key={index}
@@ -189,7 +189,7 @@ export default function ContactCard() {
             onClick={openCalPopup}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full py-4 md:py-6 px-6 md:px-8 rounded-2xl font-bold flex items-center justify-center gap-3 md:gap-4 text-lg md:text-2xl lg:text-3xl transition-all duration-300 shadow-2xl bg-blue-500 hover:bg-blue-600 text-white group relative overflow-hidden"
+            className="w-full py-4 md:py-6 px-6 md:px-8 rounded-full font-bold flex items-center justify-center gap-3 md:gap-4 text-lg md:text-2xl lg:text-3xl transition-all duration-300 shadow-2xl bg-blue-500 hover:bg-blue-600 text-white group relative overflow-hidden"
           >
             {/* Background shimmer effect */}
             <motion.div
@@ -222,6 +222,7 @@ export default function ContactCard() {
             </motion.div>
           </motion.button>
           
+          
           {/* Enhanced pulsing effect */}
           <AnimatePresence>
             {isHovering && (
@@ -235,7 +236,7 @@ export default function ContactCard() {
                     duration: 1.5,
                     ease: "easeOut"
                   }}
-                  className="absolute inset-0 bg-blue-500 rounded-2xl pointer-events-none"
+                  className="absolute inset-0 bg-blue-500 rounded-full pointer-events-none"
                   style={{ zIndex: -1 }}
                 />
                 <motion.div
@@ -248,7 +249,7 @@ export default function ContactCard() {
                     ease: "easeOut",
                     delay: 0.3
                   }}
-                  className="absolute inset-0 bg-blue-500 rounded-2xl pointer-events-none"
+                  className="absolute inset-0 bg-blue-500 rounded-full pointer-events-none"
                   style={{ zIndex: -2 }}
                 />
               </>
