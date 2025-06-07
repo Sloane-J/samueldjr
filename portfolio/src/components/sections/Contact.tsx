@@ -69,13 +69,13 @@ export default function ContactCard() {
   ];
 
   return (
-    <section id="contact" className="py-20 flex items-center justify-center relative overflow-hidden">
+    <section id="contact" className="py-12 md:py-20 flex items-center justify-center relative overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, ease: "easeOut" }}
-        className="p-20 max-w-7xl w-full mx-auto text-center flex flex-col items-center justify-center min-h-[80vh] relative"
+        className="px-4 md:px-8 lg:p-20 max-w-7xl w-full mx-auto text-center flex flex-col items-center justify-center min-h-[70vh] md:min-h-[80vh] relative"
       >
         {/* Animated background shapes */}
         {shapes.map((shape, index) => (
@@ -95,19 +95,19 @@ export default function ContactCard() {
               ease: "easeOut",
               opacity: { duration: 1.2 }
             }}
-            className="absolute rounded-full bg-blue-500"
+            className="absolute rounded-full bg-blue-500 hidden md:block"
             style={{ width: shape.size, height: shape.size }}
           />
         ))}
 
         {/* Heading with word-by-word animation */}
-        <div className="mb-8 overflow-hidden">
+        <div className="mb-6 md:mb-8 overflow-hidden">
           <motion.div 
             initial={{ y: 20 }} 
             whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex flex-wrap justify-center gap-4"
+            className="flex flex-wrap justify-center gap-2 md:gap-4"
           >
             {headingWords.map((word, index) => (
               <motion.span
@@ -120,7 +120,7 @@ export default function ContactCard() {
                   delay: index * 0.1 + 0.3,
                   ease: "easeOut"
                 }}
-                className="text-6xl font-bold text-white inline-block"
+                className="text-3xl md:text-5xl lg:text-6xl font-bold text-white inline-block"
               >
                 {word}
               </motion.span>
@@ -133,7 +133,7 @@ export default function ContactCard() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-gray-300 text-3xl max-w-4xl mb-14"
+          className="text-gray-300 text-lg md:text-2xl lg:text-3xl max-w-4xl mb-10 md:mb-14 px-4"
         >
           Ready to take your project to the next level? Get in touch today and let's make something amazing together.
         </motion.p>
@@ -144,7 +144,7 @@ export default function ContactCard() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.8 }}
-          className="grid grid-cols-3 gap-8 mb-14 w-full max-w-4xl"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-10 md:mb-14 w-full max-w-4xl"
         >
           {[
             { icon: Calendar, text: "Pick Your Appointment Date" },
@@ -157,20 +157,20 @@ export default function ContactCard() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.9 + (index * 0.1) }}
-              className="flex flex-col items-center"
+              className="flex flex-col items-center p-4"
             >
               <motion.div 
                 whileHover={{ scale: 1.1, rotate: 5 }}
-                className="bg-blue-500/10 p-4 rounded-xl mb-3"
+                className="bg-blue-500/10 p-3 md:p-4 rounded-xl mb-3"
               >
-                <item.icon className="w-8 h-8 text-blue-500" />
+                <item.icon className="w-6 h-6 md:w-8 md:h-8 text-blue-500" />
               </motion.div>
-              <p className="text-gray-300 text-lg">{item.text}</p>
+              <p className="text-gray-300 text-base md:text-lg text-center">{item.text}</p>
             </motion.div>
           ))}
         </motion.div>
         
-        {/* Cal.com popup button with enhanced animations */}
+        {/* Redesigned Cal.com popup button */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -183,46 +183,75 @@ export default function ContactCard() {
           }}
           onHoverStart={() => setIsHovering(true)}
           onHoverEnd={() => setIsHovering(false)}
-          className="relative"
+          className="relative w-full max-w-sm md:max-w-md"
         >
           <motion.button
             onClick={openCalPopup}
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-80 py-6 rounded-xl font-bold flex items-center justify-center gap-4 text-3xl transition-all shadow-lg bg-blue-500 hover:bg-blue-600 text-white"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full py-4 md:py-6 px-6 md:px-8 rounded-2xl font-bold flex items-center justify-center gap-3 md:gap-4 text-lg md:text-2xl lg:text-3xl transition-all duration-300 shadow-2xl bg-blue-500 hover:bg-blue-600 text-white group relative overflow-hidden"
           >
-            <PhoneCall className="w-10 h-10" /> 
-            <span>Book a Call</span>
-            <AnimatePresence>
-              {isHovering && (
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 10 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute right-6"
-                >
-                  <ArrowRight className="w-6 h-6" />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* Background shimmer effect */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
+              initial={{ x: '-100%' }}
+              animate={{ x: isHovering ? '200%' : '-100%' }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+            />
+            
+            <motion.div
+              animate={{ rotate: isHovering ? 15 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex-shrink-0"
+            >
+              <PhoneCall className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10" />
+            </motion.div>
+            
+            <span className="relative z-10">Book a Call</span>
+            
+            <motion.div
+              initial={{ x: -5, opacity: 0 }}
+              animate={{ 
+                x: isHovering ? 0 : -5, 
+                opacity: isHovering ? 1 : 0 
+              }}
+              transition={{ duration: 0.3 }}
+              className="flex-shrink-0"
+            >
+              <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
+            </motion.div>
           </motion.button>
           
-          {/* Pulsing effect */}
+          {/* Enhanced pulsing effect */}
           <AnimatePresence>
             {isHovering && (
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1.15, opacity: 0.15 }}
-                exit={{ scale: 1.3, opacity: 0 }}
-                transition={{ 
-                  repeat: Infinity,
-                  duration: 1.5,
-                  ease: "easeOut"
-                }}
-                className="absolute inset-0 bg-blue-500 rounded-xl"
-                style={{ zIndex: -1 }}
-              />
+              <>
+                <motion.div
+                  initial={{ scale: 1, opacity: 0 }}
+                  animate={{ scale: 1.1, opacity: 0.2 }}
+                  exit={{ scale: 1.2, opacity: 0 }}
+                  transition={{ 
+                    repeat: Infinity,
+                    duration: 1.5,
+                    ease: "easeOut"
+                  }}
+                  className="absolute inset-0 bg-blue-500 rounded-2xl pointer-events-none"
+                  style={{ zIndex: -1 }}
+                />
+                <motion.div
+                  initial={{ scale: 1, opacity: 0 }}
+                  animate={{ scale: 1.2, opacity: 0.1 }}
+                  exit={{ scale: 1.3, opacity: 0 }}
+                  transition={{ 
+                    repeat: Infinity,
+                    duration: 2,
+                    ease: "easeOut",
+                    delay: 0.3
+                  }}
+                  className="absolute inset-0 bg-blue-500 rounded-2xl pointer-events-none"
+                  style={{ zIndex: -2 }}
+                />
+              </>
             )}
           </AnimatePresence>
         </motion.div>

@@ -5,7 +5,7 @@ import { Laptop, Smartphone, Search, Rocket, PenTool, Database } from "lucide-re
 
 const services = [
   {
-    title: "Web Development",
+    title: "Front-End Web Development",
     icon: Laptop,
     iconColor: "#FF5733", // Orange
     description: "Custom web applications built with modern frameworks and best practices.",
@@ -26,7 +26,7 @@ const services = [
     tools: "Figma, Adobe XD, Sketch, InVision, Zeplin"
   },
   {
-    title: "Backend Development",
+    title: "Full-Stack Development",
     icon: Database,
     iconColor: "#2196F3", // Blue
     description: "Robust and scalable backend solutions for your applications.",
