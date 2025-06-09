@@ -67,7 +67,7 @@ export default function Blog() {
 
   return (
     <section id="blog" className="py-20 bg-[#080807]">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 text-[#D1D1C7]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

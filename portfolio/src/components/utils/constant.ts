@@ -29,9 +29,9 @@ export const NAV_LINKS = [
   
   // Contact Information
   export const CONTACT_INFO = {
-    email: "contact@example.com",
-    phone: "+1 (555) 123-4567",
-    location: "New York, NY, United States",
+    email: "samueldorkeyjr@gmail.com",
+    phone: "+233 257 774 919"
+    location: "Koforidua, Ghana",
   }
   
   // Section Metadata

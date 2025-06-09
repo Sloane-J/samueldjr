@@ -69,7 +69,7 @@ export default function ContactCard() {
   ];
 
   return (
-    <section id="contact" className="py-12 md:py-20 flex items-center justify-center relative overflow-hidden bg-[#1a1a1a]">
+    <section id="contact" className="py-12 md:py-20 flex items-center justify-center relative overflow-hidden bg-[#1a1a1a] text-[#D1D1C7]">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}

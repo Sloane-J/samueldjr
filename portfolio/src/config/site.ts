@@ -1,22 +1,22 @@
 export const siteConfig = {
-    name: "Portfolio",
-    description: "A modern portfolio built with Astro and React",
-    url: "https://portfolio.dev",
-    ogImage: "https://portfolio.dev/og.jpg",
+    name: "Samuel Dorkey - Freelance Web Developer",
+    description: "Helping creative brands and studios gain an unfair advantage with story-driven and results focused websites. Based in Koforidua, Ghana. Working Globally",
+    url: "https://samueldjr.vercel.app/",
+    ogImage: "https://samueldjr.vercel.app/og.jpg",
     links: {
-      twitter: "https://twitter.com/username",
-      github: "https://github.com/username",
+      twitter: "https://twitter.com/@sloanejnr",
+      github: "https://github.com/Sloane-J",
       linkedin: "https://www.linkedin.com/in/samueldorkey9a88901bb/",
     },
     creator: {
-      name: "Samuel Dorket",
+      name: "Samuel Dorkey",
       role: "Full Stack Developer",
       location: "Ghana",
       availability: "Open to opportunities",
       email: "samueldorkeyjr@gmail.com",
     },
     metadata: {
-      keywords: ["Full Stack Developer", "Web Development", "React", "PHP", "TypeScript", "Wireframe", "Laravel"],
+      keywords: ["Full Stack Developer", "Web Development", "React", "PHP", "TypeScript", "Astro", "Laravel"],
       themeColor: "#121212",
     },
     navigation: {

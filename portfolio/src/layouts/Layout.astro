@@ -1,15 +1,15 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-import '../styles/global.css';
+import { ViewTransitions } from "astro:transitions";
+import "../styles/global.css";
 
 interface Props {
   title: string;
   description?: string;
 }
 
-const { 
-  title, 
-  description = "A modern portfolio website built with Astro and React" 
+const {
+  title,
+  description = "A modern portfolio website built with Astro and React",
 } = Astro.props;
 ---
 
@@ -18,8 +18,28 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="web developer,freelance creative developer,freelance web designer,samuel dorkey,Ghana web designer,Samuel Dorkey, Sloane Jnr"
+    />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://samueldjr.vercel.app/" />
+    <meta
+      property="og:title"
+      content="Samuel Dorkey — Freelance Web Designer and Developer"
+    />
+    <meta
+      property="og:description"
+      content="Helping creative brands and studios gain an unfair advantage with story-driven and results focused websites. Based in Koforidua, Ghana. Working Globally."
+    />
+    <meta property="og:url" content="https://samueldjr.vercel.app/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:site_name" content="Samuel Dorkey" />
+    <!--<link rel="icon" type="image/svg+xml" href="/favicon.svg" />-->
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
@@ -28,4 +48,3 @@ const {
     <slot />
   </body>
 </html>
-
