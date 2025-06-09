@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import "../styles/global.css";
+import LenisScroll from "@/components/LenisScroll.astro";
 
 interface Props {
   title: string;
@@ -39,12 +40,14 @@ const {
     <link rel="manifest" href="/site.webmanifest" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:site_name" content="Samuel Dorkey" />
-    <!--<link rel="icon" type="image/svg+xml" href="/favicon.svg" />-->
     <meta name="generator" content={Astro.generator} />
+    <!-- google console meta tag -->
+    <meta name="google-site-verification" content="JjtegxanX-Bw1RtFAPdjtqwLp2SLjKUZh-Ggy6xobaY" />
     <title>{title}</title>
     <ViewTransitions />
   </head>
   <body class="bg-[#121212] text-white min-h-screen">
     <slot />
+    <LenisScroll />
   </body>
 </html>
