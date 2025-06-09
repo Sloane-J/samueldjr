@@ -76,18 +76,9 @@ export default function About() {
   }
 
   return (
-    <section id="about" className="py-20 bg-[#080807]">
+    <section id="about" className="py-20 bg-[#080807] text-[#D1D1C7]">
       <div className="container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-3xl md:text-4xl font-bold mb-16 text-center"
-        >
-          About Me
-        </motion.h2>
-
+        
         {/* Profile Section with Image Left, Text Right */}
         <div className="max-w-6xl mx-auto mb-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -117,15 +108,15 @@ export default function About() {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <motion.h3 variants={itemVariants} className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              <motion.h3 variants={itemVariants} className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-orange-400 to-blue-500 bg-clip-text text-transparent">
                 Hi, I'm Samuel Dorkey Jr
               </motion.h3>
 
-              <motion.p variants={itemVariants} className="text-gray-300 text-lg">
+              <motion.p variants={itemVariants} className="text-[#D1D1C7] text-lg">
               Driven by a passion for design and development, I transform ideas into live projects, ensuring a seamless journey that delivers a powerful, positive impact on the digital world and your business. My core mission is crafting exceptional web experiences that resonate with users, thanks to a keen eye for detail and a commitment to user-centric principles.
               </motion.p>
 
-              <motion.p variants={itemVariants} className="text-gray-400">
+              <motion.p variants={itemVariants} className="text-[#D1D1C7]">
               Beyond web development and design, I often share my freelance journey insights on my blog. My YouTube channel is where I unwind with mobile gameplays, and I also enjoy immersing myself in music and art. When I need a physical challenge, I hit the bouldering wall, or simply relax by nurturing my growing collection of houseplants.
               </motion.p>
 

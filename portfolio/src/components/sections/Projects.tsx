@@ -95,7 +95,7 @@ const Project = ({ project, index }) => {
               {project.title}
             </h2>
             
-            <p className="text-sm sm:text-base lg:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            <p className="text-sm sm:text-base lg:text-xl text-[#D1D1C7] leading-relaxed max-w-2xl mx-auto lg:mx-0">
               {project.description}
             </p>
             

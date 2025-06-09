@@ -50,7 +50,7 @@ export default function Testimonials() {
           className="max-w-4xl mx-auto text-center"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Testimonials</h2>
-          <p className="text-gray-400 text-base sm:text-lg">What clients say about my work</p>
+          <p className="text-[#D1D1C7] text-base sm:text-lg">What clients say about my work</p>
         </motion.div>
       </div>
 
@@ -72,13 +72,13 @@ export default function Testimonials() {
                 transition={{ delay: 0.2 }}
                 className="space-y-4 sm:space-y-6 text-center lg:text-left px-4 sm:px-6 lg:px-8"
               >
-                <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-light text-gray-200 leading-relaxed">
+                <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-light text-[#D1D1C7] leading-relaxed">
                   "{testimonials[activeIndex].content}"
                 </p>
                 <div className="space-y-1 sm:space-y-2">
                   <h3 className="text-lg sm:text-xl font-semibold">{testimonials[activeIndex].name}</h3>
-                  <p className="text-gray-400 text-sm sm:text-base">{testimonials[activeIndex].role}</p>
-                  <p className="text-gray-500 text-xs sm:text-sm">{testimonials[activeIndex].company}</p>
+                  <p className="text-[#D1D1C7] text-sm sm:text-base">{testimonials[activeIndex].role}</p>
+                  <p className="text-[#D1D1C7] text-xs sm:text-sm">{testimonials[activeIndex].company}</p>
                 </div>
               </motion.div>
             </div>
