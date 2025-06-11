@@ -6,7 +6,7 @@
   <title>Modern MacBook Pro Mockup</title>
   <style>
     body {
-      background: white;
+      background: rgb(134, 124, 124);
       margin: 0;
       padding: 0;
       display: flex;
@@ -16,21 +16,20 @@
       overflow-x: hidden;
     }
     
-    /* The laptop container */
+    /* The laptop container - now properly centered */
     .laptop-container {
       position: relative;
       width: 100%;
+      height: 100%;
       display: flex;
       justify-content: center;
-      box-shadow: inset 0 0 0 2px #c8cacb;
+      align-items: center;
     }
     
-    /* The laptop with borders */
+    /* The laptop with borders - fixed centering */
     .laptop {
-      transform-origin: 0 0;
-      transform: scale(.6) translate(-50%);
-      left: 50%;
-      position: absolute;
+      transform: scale(0.6);
+      position: relative;
       width: 1366px;
       height: 800px;
       border-radius: 20px;
@@ -39,7 +38,8 @@
       border-width: 12px 12px 80px;
       background-color: #1a1a1a;
       box-shadow: inset 0 0 0 2px #c8cacb;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: box-shadow 0.3s ease;
+      margin: 0 auto;
     }
     
     .laptop:hover {
@@ -72,7 +72,6 @@
       left: 50%;
       transform: translate(-50%);
       z-index: 1;
-      
       background: #e2e3e4;
       border-radius: 0 0 10px 10px;
       box-shadow: inset 0 0 4px 2px #babdbf;
@@ -123,19 +122,23 @@
     /* Make laptop responsive on smaller screens */
     @media only screen and (max-width: 1024px) {
       .laptop {
-        transform: scale(.5) translate(-50%);
+        transform: scale(0.5);
       }
     }
     
     @media only screen and (max-width: 768px) {
       .laptop {
-        transform: scale(.4) translate(-50%);
+        transform: scale(0.4);
+      margin-top: 50px;
+      margin-bottom: 50px;
       }
     }
     
     @media only screen and (max-width: 480px) {
       .laptop {
-        transform: scale(.3) translate(-50%);
+        transform: scale(0.3);
+        margin-top: 80px;
+        margin-bottom: 80px;
       }
     }
   </style>
@@ -145,7 +148,7 @@
     <div class="laptop">
       <div class="camera"></div>
       <div class="content">
-        <iframe src="https://affiliate-nexus.vercel.app/" title="Website Preview"></iframe>
+        <iframe src="https://samueldjr.vercel.app/" title="Website Preview"></iframe>
       </div>
     </div>
   </div>

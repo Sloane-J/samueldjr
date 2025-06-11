@@ -78,96 +78,110 @@ export default function Services() {
   }
 
   return (
-    <section id="services" className="py-20 bg-[#080807]">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#D1D1C7]">Services</h2>
-          <p className="text-[#D1D1C7] text-lg">Comprehensive solutions for your digital needs</p>
-        </motion.div>
-
-        <div className="max-w-6xl mx-auto grid md:grid-cols-12 gap-12">
-          {/* Left side - Service Cards (7 columns) */}
-          <motion.div 
-            className="md:col-span-7 grid md:grid-cols-2 gap-5"
-            variants={cardContainerVariants}
-            initial="hidden"
-            whileInView="visible"
+    <section id="services" className="min-h-screen bg-[#080807] flex flex-col">
+      {/* Header Section */}
+      <div className="flex-shrink-0 pt-16 pb-8">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center"
           >
-            {services.map((service) => (
-              <motion.div
-                key={service.title}
-                variants={cardVariants}
-                whileHover={{ y: -5 }}
-                className="bg-[#232323] rounded-lg p-5 hover:bg-[#2a2a2a] transition-all max-w-xs"
-              >
-                <div className="mb-4 inline-flex p-3 rounded-full" style={{ backgroundColor: `${service.iconColor}20` }}>
-                  <service.icon className="w-8 h-8" style={{ color: service.iconColor }} />
-                </div>
-                <h3 className="text-xl text-[#D1D1C7] font-semibold mb-2">{service.title}</h3>
-                <p className="text-[#D1D1C7] text-sm mb-3">{service.description}</p>
-                <div className="mt-3 pt-3 border-t border-gray-700">
-                  <p className="text-xs font-medium uppercase tracking-wider text-[#D1D1C7] mb-2">Tools & Technologies</p>
-                  <p className="text-[#D1D1C7] text-xs">{service.tools}</p>
-                </div>
-              </motion.div>
-            ))}
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-[#D1D1C7]">Services</h2>
+            <p className="text-[#D1D1C7] text-lg md:text-xl max-w-2xl mx-auto">
+              Comprehensive solutions for your digital needs
+            </p>
           </motion.div>
+        </div>
+      </div>
 
-          {/* Right side - Text content (5 columns) */}
-          <motion.div 
-            className="md:col-span-5 flex flex-col justify-center"
-            variants={textContainerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <motion.h3 
-              variants={textItemVariants}
-              className="text-2xl font-bold mb-6 text-[#D1D1C7]"
-            >
-              Elevate Your Digital Presence
-            </motion.h3>
+      {/* Main Content Section */}
+      <div className="flex-1 flex items-center">
+        <div className="container mx-auto px-6 w-full">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center min-h-[600px]">
             
-            <motion.p 
-              variants={textItemVariants}
-              className="mb-5 text-[#D1D1C7]"
+            {/* Left side - Service Cards (7 columns) */}
+            <motion.div 
+              className="lg:col-span-7 grid sm:grid-cols-2 gap-5 lg:gap-6"
+              variants={cardContainerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
             >
-              In today's competitive landscape, your digital presence is more important than ever. I provide end-to-end solutions that help businesses stand out and achieve their goals.
-            </motion.p>
-            
-            <motion.p 
-              variants={textItemVariants}
-              className="text-[#D1D1C7] mb-5"
-            >
-              From conceptualization to deployment, I handle every aspect of the development process with meticulous attention to detail and a focus on delivering exceptional results.
-            </motion.p>
-            
-            <motion.p 
-              variants={textItemVariants}
-              className="text-[#D1D1C7] mb-8"
-            >
-              Every project is approached with a strategic mindset, ensuring that the solutions I provide not only meet your immediate needs but also support your long-term business objectives.
-            </motion.p>
-            
-            <motion.div
-              variants={textItemVariants}
-            >
-              <a 
-                href="#contact" 
-                className="inline-flex items-center bg-gradient-to-r from-orange-600 to-orange-400 text-white px-6 py-3 rounded-full font-medium hover:from-orange-400 hover:to-orange-600 transition-all"
-              >
-                <Rocket className="w-5 h-5 mr-2" />
-                Start Your Project
-              </a>
+              {services.map((service) => (
+                <motion.div
+                  key={service.title}
+                  variants={cardVariants}
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  className="bg-gradient-to-br from-[#232323] to-[#1a1a1a] rounded-lg p-5 hover:from-[#2a2a2a] hover:to-[#232323] transition-all duration-300 border border-gray-800 hover:border-gray-700 shadow-lg"
+                >
+                  <div className="mb-4 inline-flex p-3 rounded-lg" style={{ backgroundColor: `${service.iconColor}15` }}>
+                    <service.icon className="w-7 h-7" style={{ color: service.iconColor }} />
+                  </div>
+                  <h3 className="text-lg lg:text-xl text-[#D1D1C7] font-bold mb-2">{service.title}</h3>
+                  <p className="text-[#D1D1C7] text-sm mb-3 opacity-90 leading-relaxed">{service.description}</p>
+                  <div className="mt-3 pt-3 border-t border-gray-700">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-[#D1D1C7] mb-1 opacity-80">
+                      Tools & Technologies
+                    </p>
+                    <p className="text-[#D1D1C7] text-xs opacity-75 leading-relaxed">{service.tools}</p>
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
-          </motion.div>
+
+            {/* Right side - Text content (5 columns) */}
+            <motion.div 
+              className="lg:col-span-5 flex flex-col justify-center space-y-6 lg:space-y-8"
+              variants={textContainerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <motion.h3 
+                variants={textItemVariants}
+                className="text-3xl lg:text-4xl xl:text-5xl font-bold text-[#D1D1C7] leading-tight"
+              >
+                Elevate Your Digital Presence
+              </motion.h3>
+              
+              <motion.p 
+                variants={textItemVariants}
+                className="text-[#D1D1C7] text-base lg:text-lg opacity-90 leading-relaxed"
+              >
+                In today's competitive landscape, your digital presence is more important than ever. I provide end-to-end solutions that help businesses stand out and achieve their goals.
+              </motion.p>
+              
+              <motion.p 
+                variants={textItemVariants}
+                className="text-[#D1D1C7] text-base lg:text-lg opacity-90 leading-relaxed"
+              >
+                From conceptualization to deployment, I handle every aspect of the development process with meticulous attention to detail and a focus on delivering exceptional results.
+              </motion.p>
+              
+              <motion.p 
+                variants={textItemVariants}
+                className="text-[#D1D1C7] text-base lg:text-lg opacity-90 leading-relaxed"
+              >
+                Every project is approached with a strategic mindset, ensuring that the solutions I provide not only meet your immediate needs but also support your long-term business objectives.
+              </motion.p>
+              
+              <motion.div
+                variants={textItemVariants}
+                className="pt-4"
+              >
+                <a 
+                  href="#contact" 
+                  className="inline-flex items-center bg-gradient-to-r from-orange-600 to-orange-400 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-orange-400 hover:to-orange-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25"
+                >
+                  <Rocket className="w-6 h-6 mr-3" />
+                  Start Your Project
+                </a>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

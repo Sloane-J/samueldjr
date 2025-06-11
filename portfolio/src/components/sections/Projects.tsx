@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Github, ExternalLink } from 'lucide-react';
 
@@ -9,7 +9,14 @@ const projects = [
     tags: ["Reactjs", "TypeScript", "Astrojs", "Tailwind CSS", "Framer Motion"],
     liveUrl: "https://affiliate-nexus.vercel.app/",
     githubUrl: "https://github.com/fairy-app",
-    image: "https://picsum.photos/200/300.webp",
+    images: [
+      "https://picsum.photos/400/300?random=1",
+      "https://picsum.photos/400/300?random=2",
+      "https://picsum.photos/400/300?random=3",
+      "https://picsum.photos/400/300?random=4",
+      "https://picsum.photos/400/300?random=5",
+      "https://picsum.photos/400/300?random=6",
+    ],
   },
   {
     title: "Grain and Gradient",
@@ -17,7 +24,14 @@ const projects = [
     tags: ["Reactjs", "TypeScript", "Astrojs", "Tailwind CSS", "Framer Motion"],
     liveUrl: "http://grainandgradient.vercel.app/",
     githubUrl: "https://github.com/Sloane-J/Grain-Gradient",
-    image: "https://picsum.photos/seed/picsum/200/300",
+    images: [
+      "https://picsum.photos/400/300?random=7",
+      "https://picsum.photos/400/300?random=8",
+      "https://picsum.photos/400/300?random=9",
+      "https://picsum.photos/400/300?random=10",
+      "https://picsum.photos/400/300?random=11",
+      "https://picsum.photos/400/300?random=12",
+    ],
   },
   {
     title: "Q-Vault",
@@ -25,7 +39,14 @@ const projects = [
     tags: ["Laravel", "Tailwind CSS", "Livewire"],
     liveUrl: "#",
     githubUrl: "https://github.com/Q-Vault",
-    image: "https://picsum.photos/seed/picsum/200/300",
+    images: [
+      "https://picsum.photos/400/300?random=13",
+      "https://picsum.photos/400/300?random=14",
+      "https://picsum.photos/400/300?random=15",
+      "https://picsum.photos/400/300?random=16",
+      "https://picsum.photos/400/300?random=17",
+      "https://picsum.photos/400/300?random=18",
+    ],
   },
   {
     title: "Peer Tech Konnect",
@@ -33,9 +54,88 @@ const projects = [
     tags: ["PHP", "HTML", "Bootstrap", "JavaScript"],
     liveUrl: "#",
     githubUrl: "https://github.com/LMS",
-    image: "https://picsum.photos/200/300?grayscale",
+    images: [
+      "https://picsum.photos/400/300?random=19",
+      "https://picsum.photos/400/300?random=20",
+      "https://picsum.photos/400/300?random=21",
+      "https://picsum.photos/400/300?random=22",
+      "https://picsum.photos/400/300?random=23",
+      "https://picsum.photos/400/300?random=24",
+    ],
   },
 ];
+
+const ImageSlider = ({ images, projectTitle }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  React.useEffect(() => {
+    if (!isPaused) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [images.length, isPaused]);
+
+  return (
+    <div className="relative w-full h-full max-h-96 lg:max-h-none rounded-xl sm:rounded-2xl overflow-hidden group">
+      {/* Image container */}
+      <div className="relative w-full h-full">
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentIndex ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10 group-hover:opacity-0 transition-opacity"></div>
+            <img
+              src={image}
+              alt={`${projectTitle} screenshot ${index + 1}`}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Pause/Play Button */}
+      <button
+        type="button"
+        className="absolute bottom-5 right-5 z-20 rounded-full text-white/80 opacity-50 transition hover:opacity-80 focus-visible:opacity-80 bg-black/30 p-2"
+        aria-label="pause slideshow"
+        onClick={() => setIsPaused(!isPaused)}
+      >
+        {isPaused ? (
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+            <path fillRule="evenodd" d="M2 10a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm6.39-2.908a.75.75 0 0 1 .766.027l3.5 2.25a.75.75 0 0 1 0 1.262l-3.5 2.25A.75.75 0 0 1 8 12.25v-4.5a.75.75 0 0 1 .39-.658Z" clipRule="evenodd" />
+          </svg>
+        ) : (
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+            <path fillRule="evenodd" d="M2 10a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm5-2.25A.75.75 0 0 1 7.75 7h.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-.75.75h-.5a.75.75 0 0 1-.75-.75v-4.5Zm4 0a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-.75.75h-.5a.75.75 0 0 1-.75-.75v-4.5Z" clipRule="evenodd" />
+          </svg>
+        )}
+      </button>
+
+      {/* Indicators */}
+      <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-2 px-2 py-1">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            className={`w-2 h-2 rounded-full transition ${
+              currentIndex === index ? 'bg-white' : 'bg-white/50'
+            }`}
+            onClick={() => setCurrentIndex(index)}
+            aria-label={`slide ${index + 1}`}
+          />
+        ))}
+      </div>
+      
+      {/* Reflection effect - hidden on small screens for performance */}
+      <div className="hidden sm:block absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white/10 to-transparent blur-sm transform scale-y-[-1] opacity-50"></div>
+    </div>
+  );
+};
 
 const Project = ({ project, index }) => {
   const ref = useRef(null);
@@ -134,18 +234,9 @@ const Project = ({ project, index }) => {
             </div>
           </div>
           
-          {/* Image Section */}
+          {/* Image Slider Section */}
           <div className="w-full lg:w-1/2 h-48 sm:h-64 md:h-80 lg:h-full flex items-center order-first lg:order-last">
-            <div className="relative w-full h-full max-h-96 lg:max-h-none rounded-xl sm:rounded-2xl overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10 group-hover:opacity-0 transition-opacity"></div>
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              {/* Reflection effect - hidden on small screens for performance */}
-              <div className="hidden sm:block absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white/10 to-transparent blur-sm transform scale-y-[-1] opacity-50"></div>
-            </div>
+            <ImageSlider images={project.images} projectTitle={project.title} />
           </div>
         </div>
       </motion.div>

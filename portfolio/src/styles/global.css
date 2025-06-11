@@ -64,4 +64,13 @@
     transform: rotate(-5deg) scale(0.9);
     }
   }
+
+  .my-soul-regular {
+    font-family: "My Soul", cursive;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.5px; /* Optional: improves readability */
+    line-height: 1.2; /* Optional: better for display fonts */
+  }
+  
 }

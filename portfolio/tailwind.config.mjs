@@ -4,6 +4,9 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        soul: ['"My Soul"', 'cursive']
+      },
       colors: {
         background: 'rgb(var(--background))',
         card: 'rgb(var(--card))',
