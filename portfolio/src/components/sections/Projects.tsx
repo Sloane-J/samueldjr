@@ -4,18 +4,18 @@ import { Github, ExternalLink } from 'lucide-react';
 
 const projects = [
   {
-    title: "Affeliate Nexus",
-    description: "Affiliate Nexus is a platform designed to empower individuals through personalized coaching in affiliate marketing and lifestyle optimization. It offers services such as affiliate marketing training, life coaching sessions, and self-paced online courses.",
-    tags: ["Reactjs", "TypeScript", "Astrojs", "Tailwind CSS", "Framer Motion"],
+    title: "Affiliate Nexus",
+    description:
+      "Affiliate Nexus is a platform designed to empower individuals through personalized coaching in affiliate marketing and lifestyle optimization. It offers services such as affiliate marketing training, life coaching sessions, and self-paced online courses.",
+    tags: ["React.js", "TypeScript", "Astro.js", "Tailwind CSS", "Framer Motion"],
     liveUrl: "https://affiliate-nexus.vercel.app/",
     githubUrl: "https://github.com/fairy-app",
     images: [
-      "https://picsum.photos/400/300?random=1",
-      "https://picsum.photos/400/300?random=2",
-      "https://picsum.photos/400/300?random=3",
-      "https://picsum.photos/400/300?random=4",
-      "https://picsum.photos/400/300?random=5",
-      "https://picsum.photos/400/300?random=6",
+      { src: "/images/affiliate-nexus-1.jpg" },
+      { src: "/images/affiliate-nexus-2.jpg" },
+      { src: "/images/affiliate-nexus-3.jpg" },
+      { src: "/images/affiliate-nexus-4.jpg" },
+      { src: "/images/affiliate-nexus-5.jpg" },
     ],
   },
   {
