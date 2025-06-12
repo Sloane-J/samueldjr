@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Github, ExternalLink } from 'lucide-react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { Github, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const projects = [
   {
@@ -11,11 +11,11 @@ const projects = [
     liveUrl: "https://affiliate-nexus.vercel.app/",
     githubUrl: "https://github.com/fairy-app",
     images: [
-      { src: "/images/affiliate-nexus-1.jpg" },
-      { src: "/images/affiliate-nexus-2.jpg" },
-      { src: "/images/affiliate-nexus-3.jpg" },
-      { src: "/images/affiliate-nexus-4.jpg" },
-      { src: "/images/affiliate-nexus-5.jpg" },
+      { src: "/images/affiliate-nexus-1.png" },
+      { src: "/images/affiliate-nexus-2.png" },
+      { src: "/images/affiliate-nexus-3.png" },
+      { src: "/images/affiliate-nexus-4.png" },
+      { src: "/images/affiliate-nexus-5.png" },
     ],
   },
   {
@@ -25,12 +25,11 @@ const projects = [
     liveUrl: "http://grainandgradient.vercel.app/",
     githubUrl: "https://github.com/Sloane-J/Grain-Gradient",
     images: [
-      "https://picsum.photos/400/300?random=7",
-      "https://picsum.photos/400/300?random=8",
-      "https://picsum.photos/400/300?random=9",
-      "https://picsum.photos/400/300?random=10",
-      "https://picsum.photos/400/300?random=11",
-      "https://picsum.photos/400/300?random=12",
+      { src: "/images/affiliate-nexus-1.png" },
+      { src: "/images/affiliate-nexus-2.png" },
+      { src: "/images/affiliate-nexus-3.png" },
+      { src: "/images/affiliate-nexus-4.png" },
+      { src: "/images/affiliate-nexus-5.png" },
     ],
   },
   {
@@ -40,103 +39,143 @@ const projects = [
     liveUrl: "#",
     githubUrl: "https://github.com/Q-Vault",
     images: [
-      "https://picsum.photos/400/300?random=13",
-      "https://picsum.photos/400/300?random=14",
-      "https://picsum.photos/400/300?random=15",
-      "https://picsum.photos/400/300?random=16",
-      "https://picsum.photos/400/300?random=17",
-      "https://picsum.photos/400/300?random=18",
+      { src: "/images/affiliate-nexus-1.png" },
+      { src: "/images/affiliate-nexus-2.png" },
+      { src: "/images/affiliate-nexus-3.png" },
+      { src: "/images/affiliate-nexus-4.png" },
+      { src: "/images/affiliate-nexus-5.png" },
     ],
   },
   {
     title: "Peer Tech Konnect",
-    description: "Peer Tech Konnect is a web based Learning Management System (LMS) designed to connect students, tutors, and administrators in a unified education environment. It offers user authentication, course enrollment, tutor approvals, discussions, assignments, quizzes, grading, analytics, and real-time email notifications. With dashboards tailored for each role and tools for progress tracking and communication, the system streamlines digital learning from enrollment to certification.",
+    description: "Peer Tech Konnect is a web based Learning Management System (LMS) designed to connect students, tutors, and administrators in a unified education environment. It offers user authentication, course enrollment, tutor approvals, discussions, assignments, quizzes, grading, analytics, and real-time email notifications.",
     tags: ["PHP", "HTML", "Bootstrap", "JavaScript"],
     liveUrl: "#",
     githubUrl: "https://github.com/LMS",
     images: [
-      "https://picsum.photos/400/300?random=19",
-      "https://picsum.photos/400/300?random=20",
-      "https://picsum.photos/400/300?random=21",
-      "https://picsum.photos/400/300?random=22",
-      "https://picsum.photos/400/300?random=23",
-      "https://picsum.photos/400/300?random=24",
+      { src: "/images/affiliate-nexus-1.png" },
+      { src: "/images/affiliate-nexus-2.png" },
+      { src: "/images/affiliate-nexus-3.png" },
+      { src: "/images/affiliate-nexus-4.png" },
+      { src: "/images/affiliate-nexus-5.png" },
     ],
   },
 ];
 
 const ImageSlider = ({ images, projectTitle }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [direction, setDirection] = useState<'left' | 'right'>('right');
 
-  React.useEffect(() => {
-    if (!isPaused) {
-      const interval = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % images.length);
-      }, 3000);
-      return () => clearInterval(interval);
-    }
-  }, [images.length, isPaused]);
+  // FIX: Handle case where images array might be empty or undefined
+  if (!images || images.length === 0) {
+    return (
+      <div className="relative w-full h-full max-h-96 lg:max-h-none rounded-xl sm:rounded-2xl overflow-hidden group bg-gray-800 flex items-center justify-center text-gray-400">
+        <p>No images available for this project.</p>
+      </div>
+    );
+  }
+
+  const goToPrevious = () => {
+    setDirection('left');
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setDirection('right');
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const goToSlide = (index) => { // Removed explicit type for broader runtime compatibility
+    setDirection(index > currentIndex ? 'right' : 'left');
+    setCurrentIndex(index);
+  };
+
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction === 'right' ? '100%' : '-100%',
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      transition: { duration: 0.5, ease: 'easeInOut' }
+    },
+    exit: (direction) => ({
+      x: direction === 'right' ? '-100%' : '100%',
+      opacity: 0,
+      transition: { duration: 0.5, ease: 'easeInOut' }
+    }),
+  };
 
   return (
     <div className="relative w-full h-full max-h-96 lg:max-h-none rounded-xl sm:rounded-2xl overflow-hidden group">
-      {/* Image container */}
-      <div className="relative w-full h-full">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentIndex ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10 group-hover:opacity-0 transition-opacity"></div>
-            <img
-              src={image}
-              alt={`${projectTitle} screenshot ${index + 1}`}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* Pause/Play Button */}
+      {/* Previous button */}
       <button
         type="button"
-        className="absolute bottom-5 right-5 z-20 rounded-full text-white/80 opacity-50 transition hover:opacity-80 focus-visible:opacity-80 bg-black/30 p-2"
-        aria-label="pause slideshow"
-        onClick={() => setIsPaused(!isPaused)}
+        className="absolute left-2 sm:left-4 top-1/2 z-20 flex -translate-y-1/2 items-center justify-center rounded-full bg-black/40 p-2 text-white transition hover:bg-black/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        aria-label="previous slide"
+        onClick={goToPrevious}
       >
-        {isPaused ? (
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-            <path fillRule="evenodd" d="M2 10a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm6.39-2.908a.75.75 0 0 1 .766.027l3.5 2.25a.75.75 0 0 1 0 1.262l-3.5 2.25A.75.75 0 0 1 8 12.25v-4.5a.75.75 0 0 1 .39-.658Z" clipRule="evenodd" />
-          </svg>
-        ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-            <path fillRule="evenodd" d="M2 10a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm5-2.25A.75.75 0 0 1 7.75 7h.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-.75.75h-.5a.75.75 0 0 1-.75-.75v-4.5Zm4 0a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-.75.75h-.5a.75.75 0 0 1-.75-.75v-4.5Z" clipRule="evenodd" />
-          </svg>
-        )}
+        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={3} aria-hidden="true" />
       </button>
 
+      {/* Next button */}
+      <button
+        type="button"
+        className="absolute right-2 sm:right-4 top-1/2 z-20 flex -translate-y-1/2 items-center justify-center rounded-full bg-black/40 p-2 text-white transition hover:bg-black/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        aria-label="next slide"
+        onClick={goToNext}
+      >
+        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={3} aria-hidden="true" />
+      </button>
+
+      {/* Image container with AnimatePresence for smooth transitions */}
+      <div className="relative w-full h-full">
+        <AnimatePresence custom={direction} initial={false}>
+          {/* Using currentIndex directly as key to force re-render for AnimatePresence */}
+          <motion.div
+            key={currentIndex}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className="absolute inset-0"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10 group-hover:opacity-0 transition-opacity duration-300"></div>
+            <motion.img
+              src={images[currentIndex].src}
+              alt={`${projectTitle} screenshot ${currentIndex + 1}`}
+              className="w-full h-full object-cover"
+              initial={{ scale: 1.05 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+            />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
       {/* Indicators */}
-      <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-2 px-2 py-1">
+      <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-2 px-2 py-1 bg-black/40 backdrop-blur-sm rounded-full">
         {images.map((_, index) => (
           <button
             key={index}
-            className={`w-2 h-2 rounded-full transition ${
-              currentIndex === index ? 'bg-white' : 'bg-white/50'
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              currentIndex === index ? 'bg-white w-4' : 'bg-white/50'
             }`}
-            onClick={() => setCurrentIndex(index)}
-            aria-label={`slide ${index + 1}`}
+            onClick={() => goToSlide(index)}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
       
-      {/* Reflection effect - hidden on small screens for performance */}
-      <div className="hidden sm:block absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white/10 to-transparent blur-sm transform scale-y-[-1] opacity-50"></div>
+      {/* Reflection effect */}
+      <div className="hidden sm:block absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white/10 to-transparent blur-sm transform scale-y-[-1] opacity-30"></div>
     </div>
   );
 };
 
+// --- Project Component ---
 const Project = ({ project, index }) => {
   const ref = useRef(null);
   
@@ -149,7 +188,7 @@ const Project = ({ project, index }) => {
   const y = useTransform(
     scrollYProgress,
     [0, 1],
-    [index === 0 ? 0 : 100, -100] // Reduced movement for mobile
+    [index === 0 ? 0 : 100, -100]
   );
 
   // Add opacity transform for smoother transitions
@@ -168,10 +207,10 @@ const Project = ({ project, index }) => {
 
   return (
     <motion.section 
-    id="projects"
+      id="projects"
       ref={ref}
       style={{ y }}
-      className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-2 sm:px-4 bg=[#080807]"
+      className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-2 sm:px-4 bg-[#080807]"
     >
       <motion.div 
         style={{ opacity, scale }}
@@ -234,7 +273,7 @@ const Project = ({ project, index }) => {
             </div>
           </div>
           
-          {/* Image Slider Section */}
+          {/* Image Slider Section - Now renders the React ImageSlider directly */}
           <div className="w-full lg:w-1/2 h-48 sm:h-64 md:h-80 lg:h-full flex items-center order-first lg:order-last">
             <ImageSlider images={project.images} projectTitle={project.title} />
           </div>
