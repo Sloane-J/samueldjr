@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 18 18 18;
+    --background: url('/images/background-image.svg'); /* Updated to use SVG */
     --card: 30 30 30;
     --border: 38 38 38;
     --primary: 235 186 123;
@@ -15,10 +15,11 @@
     --color-3: 210 100% 63%;
     --color-4: 195 100% 63%;
     --color-5: 90 100% 63%;
+    --font-size: calc(clamp(480px, 100vw, 767px) / (460 / 16));
   }
 
   .dark {
-    --background: 18 18 18;
+    --background: url('/images/background-noise.svg'); /* Consistent with :root */
     --card: 30 30 30;
     --color-1: 0 100% 63%;
     --color-2: 270 100% 63%;
@@ -36,32 +37,37 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-white;
+    @apply text-white;
+    background: var(--background);
+    background-size: cover;
+    background-position: center;
+    font-size: var(--font-size);
+    font-family: Arial, sans-serif; /* Updated to use Arial with sans-serif fallback */
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
 @theme inline {
   @keyframes aurora {
-  0% {
-    background-position: 0% 50%;
-    transform: rotate(-5deg) scale(0.9);
+    0% {
+      background-position: 0% 50%;
+      transform: rotate(-5deg) scale(0.9);
     }
-  25% {
-    background-position: 50% 100%;
-    transform: rotate(5deg) scale(1.1);
+    25% {
+      background-position: 50% 100%;
+      transform: rotate(5deg) scale(1.1);
     }
-  50% {
-    background-position: 100% 50%;
-    transform: rotate(-3deg) scale(0.95);
+    50% {
+      background-position: 100% 50%;
+      transform: rotate(-3deg) scale(0.95);
     }
-  75% {
-    background-position: 50% 0%;
-    transform: rotate(3deg) scale(1.05);
+    75% {
+      background-position: 50% 0%;
+      transform: rotate(3deg) scale(1.05);
     }
-  100% {
-    background-position: 0% 50%;
-    transform: rotate(-5deg) scale(0.9);
+    100% {
+      background-position: 0% 50%;
+      transform: rotate(-5deg) scale(0.9);
     }
   }
 
@@ -69,8 +75,7 @@
     font-family: "My Soul", cursive;
     font-weight: 400;
     font-style: normal;
-    letter-spacing: 0.5px; /* Optional: improves readability */
-    line-height: 1.2; /* Optional: better for display fonts */
+    letter-spacing: 0.5px;
+    line-height: 1.2;
   }
-  
 }
