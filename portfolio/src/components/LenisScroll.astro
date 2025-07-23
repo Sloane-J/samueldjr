@@ -1,15 +1,16 @@
 ---
-
+// Component script (server-side)
+// Add any server-side logic here if needed
 ---
 
 <script>
-  import Lenis from 'lenis'
+  import Lenis from 'lenis';
 
   // Initialize Lenis when the page loads
   document.addEventListener('DOMContentLoaded', () => {
     // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
+
     if (!prefersReducedMotion) {
       // Initialize Lenis
       const lenis = new Lenis({
@@ -29,7 +30,7 @@
         lenis.raf(time);
         requestAnimationFrame(raf);
       }
-      
+
       requestAnimationFrame(raf);
 
       // Optional: Add scroll to top functionality
@@ -62,21 +63,21 @@
   html {
     scroll-behavior: auto !important;
   }
-  
+
   /* Optional: Hide scrollbar for cleaner look */
   html::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   html::-webkit-scrollbar-track {
     background: transparent;
   }
-  
+
   html::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 4px;
   }
-  
+
   html::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.4);
   }

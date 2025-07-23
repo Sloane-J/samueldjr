@@ -75,9 +75,9 @@ export default function About() {
       transition: { duration: 0.7, ease: "easeOut" }
     }
   }
-
+ 
   return (
-    <section id="about" className="min-h-screen bg-[#080807] text-[#D1D1C7] flex flex-col">
+    <section id="about" className="min-h-screen text-[#D1D1C7] flex flex-col">
       {/* Header Section */}
       <div className="flex-shrink-0 pt-16 pb-8">
         <div className="container mx-auto px-6">

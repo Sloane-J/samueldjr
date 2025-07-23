@@ -46,16 +46,16 @@ export default function Services() {
       }
     }
   }
-  
+
   const cardVariants = {
     hidden: { opacity: 0, x: -40 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
       transition: { duration: 0.6, ease: "easeOut" }
     }
   }
-  
+
   // Animation variants for text content from right
   const textContainerVariants = {
     hidden: { opacity: 0 },
@@ -67,11 +67,11 @@ export default function Services() {
       }
     }
   }
-  
+
   const textItemVariants = {
     hidden: { opacity: 0, x: 40 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
       transition: { duration: 0.6, ease: "easeOut" }
     }
@@ -101,9 +101,9 @@ export default function Services() {
       <div className="flex-1 flex items-center">
         <div className="container mx-auto px-6 w-full">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center min-h-[600px]">
-            
+
             {/* Left side - Service Cards (7 columns) */}
-            <motion.div 
+            <motion.div
               className="lg:col-span-7 grid sm:grid-cols-2 gap-5 lg:gap-6"
               variants={cardContainerVariants}
               initial="hidden"
@@ -133,47 +133,47 @@ export default function Services() {
             </motion.div>
 
             {/* Right side - Text content (5 columns) */}
-            <motion.div 
+            <motion.div
               className="lg:col-span-5 flex flex-col justify-center space-y-6 lg:space-y-8"
               variants={textContainerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
             >
-              <motion.h3 
+              <motion.h3
                 variants={textItemVariants}
                 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-[#D1D1C7] leading-tight"
               >
                 Elevate Your Digital Presence
               </motion.h3>
-              
-              <motion.p 
+
+              <motion.p
                 variants={textItemVariants}
                 className="text-[#D1D1C7] text-base lg:text-lg opacity-90 leading-relaxed"
               >
                 In today's competitive landscape, your digital presence is more important than ever. I provide end-to-end solutions that help businesses stand out and achieve their goals.
               </motion.p>
-              
-              <motion.p 
+
+              <motion.p
                 variants={textItemVariants}
                 className="text-[#D1D1C7] text-base lg:text-lg opacity-90 leading-relaxed"
               >
                 From conceptualization to deployment, I handle every aspect of the development process with meticulous attention to detail and a focus on delivering exceptional results.
               </motion.p>
-              
-              <motion.p 
+
+              <motion.p
                 variants={textItemVariants}
                 className="text-[#D1D1C7] text-base lg:text-lg opacity-90 leading-relaxed"
               >
                 Every project is approached with a strategic mindset, ensuring that the solutions I provide not only meet your immediate needs but also support your long-term business objectives.
               </motion.p>
-              
+
               <motion.div
                 variants={textItemVariants}
                 className="pt-4"
               >
-                <a 
-                  href="#contact" 
+                <a
+                  href="#contact"
                   className="inline-flex items-center bg-gradient-to-r from-orange-600 to-orange-400 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-orange-400 hover:to-orange-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25"
                 >
                   <Rocket className="w-6 h-6 mr-3" />

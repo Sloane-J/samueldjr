@@ -26,7 +26,7 @@ function FloatingParticles() {
       {particles.map((particle) => (
         <motion.div
           key={particle}
-          className="absolute w-2 h-2 bg-gray-600 rounded-full opacity-60"
+          className="absolute w-2 h-2 bg-gray-600 rounded opacity-60"
           initial={{
             x: Math.random() * 1200,
             y: Math.random() * 800,
@@ -53,12 +53,12 @@ function GeometricShapes() {
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {/* Rotating circles */}
       <motion.div
-        className="absolute top-20 left-10 w-32 h-32 border-2 border-gray-700/20 rounded-full"
+        className="absolute top-20 left-10 w-32 h-32 border-2 border-gray-700/20 rounded"
         animate={{ rotate: 360 }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
       />
       <motion.div
-        className="absolute bottom-32 right-20 w-24 h-24 border-2 border-gray-600/20 rounded-full"
+        className="absolute bottom-32 right-20 w-24 h-24 border-2 border-gray-600/20 rounded"
         animate={{ rotate: -360 }}
         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
       />
@@ -92,7 +92,7 @@ function GeometricShapes() {
 
       {/* Pulsing dots */}
       <motion.div
-        className="absolute top-1/2 left-20 w-4 h-4 bg-gray-500/50 rounded-full"
+        className="absolute top-1/2 left-20 w-4 h-4 bg-gray-500/50 rounded"
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.5, 1, 0.5]
@@ -104,7 +104,7 @@ function GeometricShapes() {
         }}
       />
       <motion.div
-        className="absolute top-1/4 right-1/3 w-3 h-3 bg-gray-600/50 rounded-full"
+        className="absolute top-1/4 right-1/3 w-3 h-3 bg-gray-600/50 rounded"
         animate={{
           scale: [1, 2, 1],
           opacity: [0.3, 0.8, 0.3]
@@ -186,7 +186,7 @@ export default function Hero() {
 
       {/* Animated solid orbs */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-96 h-96 bg-gray-800/20 rounded-full blur-3xl"
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-gray-800/20 rounded blur-3xl"
         animate={{
           scale: [1, 1.2, 1],
           x: [0, 50, 0],
@@ -199,7 +199,7 @@ export default function Hero() {
         }}
       />
       <motion.div
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gray-700/20 rounded-full blur-3xl"
+        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gray-700/20 rounded blur-3xl"
         animate={{
           scale: [1, 1.3, 1],
           x: [0, -40, 0],
@@ -224,7 +224,7 @@ export default function Hero() {
           >
             <motion.div variants={itemVariants}>
               <motion.div
-                className="inline-block mb-4 px-4 py-2 bg-[#232323] rounded-full border border-gray-600/50"
+                className="inline-block mb-4 px-4 py-2 bg-[#232323] rounded border border-gray-600/50"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
@@ -264,7 +264,7 @@ export default function Hero() {
             >
               <motion.a
                 href="#contact"
-                className="inline-flex items-center gap-2 bg-orange-700 text-white px-8 py-3 rounded-full font-medium shadow-lg transition-all duration-300 hover:bg-orange-600"
+                className="inline-flex items-center gap-2 bg-orange-700 text-white px-8 py-3 rounded font-medium shadow-lg transition-all duration-300 hover:bg-orange-600"
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.4)"
@@ -285,7 +285,7 @@ export default function Hero() {
 
               <motion.a
                 href="#projects"
-                className="inline-flex items-center gap-2 border-2 border-gray-600/50 text-gray-300 px-8 py-3 rounded-full font-medium hover:bg-[#232323] hover:border-gray-500 transition-all duration-300"
+                className="inline-flex items-center gap-2 border-2 border-gray-600/50 text-gray-300 px-8 py-3 rounded font-medium hover:bg-[#232323] hover:border-gray-500 transition-all duration-300"
                 whileHover={{
                   scale: 1.05,
                   borderColor: "rgba(107, 114, 128, 0.8)"
@@ -307,7 +307,7 @@ export default function Hero() {
             <div className="relative w-full max-w-md">
               {/* Multiple layered glow effects */}
               <motion.div
-                className="absolute inset-0 bg-gray-800/40 blur-2xl rounded-full transform -translate-y-4"
+                className="absolute inset-0 bg-gray-800/40 blur-2xl rounded transform -translate-y-4"
                 animate={{
                   scale: [1, 1.1, 1],
                   rotate: [0, 5, 0]
@@ -319,7 +319,7 @@ export default function Hero() {
                 }}
               />
               <motion.div
-                className="absolute inset-0 bg-gray-700/30 blur-xl rounded-full transform translate-x-2 translate-y-2"
+                className="absolute inset-0 bg-gray-700/30 blur-xl rounded transform translate-x-2 translate-y-2"
                 animate={{
                   scale: [1.1, 1, 1.1],
                   rotate: [5, -5, 5]
@@ -347,7 +347,7 @@ export default function Hero() {
 
               {/* Orbiting elements around the image */}
               <motion.div
-                className="absolute -top-4 -left-4 w-8 h-8 bg-gray-700 rounded-full shadow-lg"
+                className="absolute -top-4 -left-4 w-8 h-8 bg-gray-700 rounded shadow-lg"
                 animate={{
                   rotate: 360,
                   scale: [1, 1.2, 1]
@@ -362,7 +362,7 @@ export default function Hero() {
               />
 
               <motion.div
-                className="absolute -bottom-4 -right-4 w-6 h-6 bg-gray-600 rounded-full shadow-lg"
+                className="absolute -bottom-4 -right-4 w-6 h-6 bg-gray-600 rounded shadow-lg"
                 animate={{
                   rotate: -360,
                   scale: [1, 1.3, 1]
