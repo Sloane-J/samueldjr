@@ -8,7 +8,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        soul: ['"My Soul"', 'cursive']
+        soul: ['"My Soul"', "cursive"],
+        playfair: ['"Playfair Display"', "serif"],
+        inter: ['"Inter"', "sans-serif"]
       },
       colors: {
         background: "rgb(var(--background))",
@@ -28,18 +30,38 @@ export default {
       },
       keyframes: {
         gradient: {
-          "0%, 100%": { "background-size": "200% 200%", "background-position": "left center" },
-          "50%": { "background-size": "200% 200%", "background-position": "right center" }
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center"
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center"
+          }
         },
         "text-gradient": {
-          "0%, 100%": { "background-size": "200% 200%", "background-position": "left center" },
-          "50%": { "background-size": "200% 200%", "background-position": "right center" }
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center"
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center"
+          }
         },
         "aurora-border": {
-          "0%, 100%": { borderRadius: "37% 29% 27% 27% / 28% 25% 41% 37%" },
-          "25%": { borderRadius: "47% 29% 39% 49% / 61% 19% 66% 26%" },
-          "50%": { borderRadius: "57% 23% 47% 72% / 63% 17% 66% 33%" },
-          "75%": { borderRadius: "28% 49% 29% 100% / 93% 20% 64% 25%" }
+          "0%, 100%": {
+            borderRadius: "37% 29% 27% 27% / 28% 25% 41% 37%"
+          },
+          "25%": {
+            borderRadius: "47% 29% 39% 49% / 61% 19% 66% 26%"
+          },
+          "50%": {
+            borderRadius: "57% 23% 47% 72% / 63% 17% 66% 33%"
+          },
+          "75%": {
+            borderRadius: "28% 49% 29% 100% / 93% 20% 64% 25%"
+          }
         },
         "aurora-1": {
           "0%, 100%": { top: "0", right: "0" },

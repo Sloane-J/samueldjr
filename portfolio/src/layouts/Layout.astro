@@ -3,7 +3,7 @@ import { ViewTransitions } from "astro:transitions";
 import "../styles/global.css";
 import LenisScroll from "@/components/LenisScroll.astro";
 // Import your new Alpine.js slider component
-import AlpineImageSlider from "@/components/ui/ImageSlider"; 
+import AlpineImageSlider from "@/components/ui/ImageSlider";
 
 interface Props {
   title: string;
@@ -44,12 +44,14 @@ const {
     <meta property="og:site_name" content="Samuel Dorkey" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Google Fonts: Playfair Display + Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=My+Soul&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+
     <!-- google console meta tag -->
     <meta
       name="google-site-verification"
@@ -58,9 +60,9 @@ const {
     <title>{title}</title>
     <ViewTransitions />
   </head>
-  <body class="bg-[#121212] text-white min-h-screen">
-    <main class="flex justify-center items-center py-8"> {/* Added for centering */}
-      <AlpineImageSlider client:load /> {/* <--- Crucial client directive */}
+  <body class="bg-[#0C0E0C] text-white min-h-screen font-playfair">
+    <main class="flex justify-center items-center py-8">
+      <AlpineImageSlider client:load />
     </main>
     <slot />
     <LenisScroll />

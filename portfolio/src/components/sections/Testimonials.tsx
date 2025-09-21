@@ -1,46 +1,57 @@
-"use client"
+"use client";
 
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
 
 const testimonials = [
   {
     name: "Sarah Johnson",
     role: "CEO at TechStart",
     company: "Leading innovative startup solutions in San Francisco",
-    content: "Working with this team was an absolute pleasure. They delivered our project on time and exceeded our expectations. The attention to detail and innovative solutions provided were beyond what we imagined possible.",
-    image: "https://devicescss.xyz/assets/img/bg-10.jpg",
+    content:
+      "Working with this team was an absolute pleasure. They delivered our project on time and exceeded our expectations. The attention to detail and innovative solutions provided were beyond what we imagined possible.",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
   },
   {
     name: "Michael Chen",
     role: "Marketing Director",
     company: "Global Marketing Solutions Inc.",
-    content: "The attention to detail and creative solutions provided were exceptional. Highly recommended! Their understanding of our brand and market positioning was impressive, leading to outstanding results.",
-    image: "https://devicescss.xyz/assets/img/bg-10.jpg",
+    content:
+      "The attention to detail and creative solutions provided were exceptional. Highly recommended! Their understanding of our brand and market positioning was impressive, leading to outstanding results.",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
   },
   {
     name: "Emma Davis",
     role: "Product Manager",
     company: "Tech Innovations Ltd",
-    content: "Outstanding work on our web application. The final product was exactly what we envisioned. The team's ability to translate our requirements into a functional and beautiful product was remarkable.",
-    image: "https://devicescss.xyz/assets/img/bg-10.jpg",
+    content:
+      "Outstanding work on our web application. The final product was exactly what we envisioned. The team's ability to translate our requirements into a functional and beautiful product was remarkable.",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
   },
-]
+];
 
 export default function Testimonials() {
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const nextTestimonial = () => {
-    setActiveIndex((prev) => (prev + 1) % testimonials.length)
-  }
+    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  };
 
   const prevTestimonial = () => {
-    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-  }
+    setActiveIndex(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
+  };
 
   return (
-    <section id="testimonials" className="py-12 sm:py-16 lg:py-20 bg-[#080807] overflow-hidden">
+    <section
+      id="testimonials"
+      className="py-12 sm:py-16 lg:py-20 bg-[#080807] overflow-hidden"
+    >
       <div className="container mx-auto px-4 mb-8 sm:mb-12 lg:mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -49,8 +60,12 @@ export default function Testimonials() {
           transition={{ duration: 0.5 }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-[#D1D1C7]">Testimonials</h2>
-          <p className="text-[#D1D1C7] text-base sm:text-lg">What clients say about my work</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-[#D1D1C7]">
+            Testimonials
+          </h2>
+          <p className="text-[#D1D1C7] text-base sm:text-lg">
+            What clients say about my work
+          </p>
         </motion.div>
       </div>
 
@@ -76,9 +91,15 @@ export default function Testimonials() {
                   "{testimonials[activeIndex].content}"
                 </p>
                 <div className="space-y-1 sm:space-y-2">
-                  <h3 className="text-lg sm:text-xl font-semibold">{testimonials[activeIndex].name}</h3>
-                  <p className="text-[#D1D1C7] text-sm sm:text-base">{testimonials[activeIndex].role}</p>
-                  <p className="text-[#D1D1C7] text-xs sm:text-sm">{testimonials[activeIndex].company}</p>
+                  <h3 className="text-lg sm:text-xl font-semibold">
+                    {testimonials[activeIndex].name}
+                  </h3>
+                  <p className="text-[#D1D1C7] text-sm sm:text-base">
+                    {testimonials[activeIndex].role}
+                  </p>
+                  <p className="text-[#D1D1C7] text-xs sm:text-sm">
+                    {testimonials[activeIndex].company}
+                  </p>
                 </div>
               </motion.div>
             </div>
@@ -128,7 +149,7 @@ export default function Testimonials() {
                 key={index}
                 onClick={() => setActiveIndex(index)}
                 className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors touch-manipulation ${
-                  index === activeIndex ? 'bg-white' : 'bg-white/30'
+                  index === activeIndex ? "bg-white" : "bg-white/30"
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
@@ -137,5 +158,5 @@ export default function Testimonials() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -5,26 +5,26 @@ import { Github, Twitter, Linkedin, Mail, ArrowUp, ExternalLink, Heart, Code } f
 
 export default function Footer() {
   const socialLinks = [
-    { 
-      icon: Github, 
+    {
+      icon: Github,
       href: "https://github.com/Sloane-J",
       label: "GitHub",
       color: "hover:text-gray-300"
     },
-    { 
-      icon: Twitter, 
+    {
+      icon: Twitter,
       href: "https://twitter.com/sloanejnr",
       label: "Twitter",
       color: "hover:text-blue-400"
     },
-    { 
-      icon: Linkedin, 
+    {
+      icon: Linkedin,
       href: "https://www.linkedin.com/in/samueldorkey9a88901bb/",
       label: "LinkedIn",
       color: "hover:text-blue-500"
     },
-    { 
-      icon: Mail, 
+    {
+      icon: Mail,
       href: "mailto:samueldorkeyjr@gmail.com",
       label: "Email",
       color: "hover:text-orange-400"
@@ -63,7 +63,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-gradient-to-b from-[#080807] to-[#0a0a0a] min-h-[50vh] flex flex-col relative overflow-hidden">
+    <footer className="min-h-[50vh] flex flex-col relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-72 h-72 bg-orange-500 rounded-full blur-3xl"></div>
@@ -82,7 +82,7 @@ export default function Footer() {
           >
             {/* Main Footer Content */}
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-16">
-              
+
               {/* Left Section - Brand & Description */}
               <motion.div variants={itemVariants} className="lg:col-span-5 space-y-6">
                 <div>
@@ -92,13 +92,6 @@ export default function Footer() {
                   <p className="text-[#D1D1C7] text-lg lg:text-xl opacity-90 leading-relaxed mb-6">
                     Crafting digital experiences that inspire and engage. Let's build something amazing together.
                   </p>
-                  <div className="flex items-center gap-2 text-[#D1D1C7] opacity-75">
-                    <span>Made with</span>
-                    <Heart className="w-4 h-4 text-red-500 fill-current" />
-                    <span>and</span>
-                    <Code className="w-4 h-4 text-blue-400" />
-                    <span>by Samuel Dorkey Jr</span>
-                  </div>
                 </div>
               </motion.div>
 

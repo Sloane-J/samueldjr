@@ -54,6 +54,7 @@ export default function CornerMenu() {
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
             <motion.button
+              aria-label="Toggle navigation"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={`relative w-12 h-12 md:w-14 md:h-14 rounded-full backdrop-blur-xl border transition-all duration-300 ${
                 isMenuOpen
@@ -130,7 +131,7 @@ export default function CornerMenu() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1, duration: 0.5 }}
                 >
-                  Navigate
+
                 </motion.h2>
                 <motion.button
                   onClick={() => setIsMenuOpen(false)}
@@ -167,7 +168,7 @@ export default function CornerMenu() {
                         whileHover={{ x: 10 }}
                       >
                         {/* Icon */}
-                        
+
 
                         {/* Text */}
                         <div className="flex-1 min-w-0">

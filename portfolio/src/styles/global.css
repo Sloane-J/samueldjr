@@ -4,7 +4,8 @@
 
 @layer base {
   :root {
-    --background: url('/images/background-image.svg'); /* Updated to use SVG */
+    --un-bg-opacity: 1;
+    --un-text-opacity: 1;
     --card: 30 30 30;
     --border: 38 38 38;
     --primary: 235 186 123;
@@ -16,10 +17,13 @@
     --color-4: 195 100% 63%;
     --color-5: 90 100% 63%;
     --font-size: calc(clamp(480px, 100vw, 767px) / (460 / 16));
+
+    background-color: rgb(23 23 23 / var(--un-bg-opacity));
+    color: rgb(212 212 212 / var(--un-text-opacity));
   }
 
   .dark {
-    --background: url('/images/background-noise.svg'); /* Consistent with :root */
+    --background: rgb(23 23 23 / var(--un-bg-opacity));
     --card: 30 30 30;
     --color-1: 0 100% 63%;
     --color-2: 270 100% 63%;
@@ -27,27 +31,26 @@
     --color-4: 195 100% 63%;
     --color-5: 90 100% 63%;
   }
+
   .theme {
     --animate-aurora: aurora 8s ease-in-out infinite alternate;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply text-white;
     background: var(--background);
     background-size: cover;
     background-position: center;
     font-size: var(--font-size);
-    font-family: Arial, sans-serif; /* Updated to use Arial with sans-serif fallback */
+    font-family: Arial, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
+    position: relative;
   }
-}
 
-@theme inline {
   @keyframes aurora {
     0% {
       background-position: 0% 50%;
@@ -72,7 +75,7 @@
   }
 
   .my-soul-regular {
-    font-family: "My Soul", cursive;
+    font-family: "Dank Mono", cursive;
     font-weight: 400;
     font-style: normal;
     letter-spacing: 0.5px;
