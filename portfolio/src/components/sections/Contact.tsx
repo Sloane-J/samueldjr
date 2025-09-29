@@ -59,7 +59,7 @@ export default function ContactCard() {
 
   // Staggered text animation for heading
   const headingWords = "Looking For That Unfair Advantage?".split(" ");
-  
+
   // Background shapes animation
   const shapes = [
     { size: 100, x: -250, y: -150, delay: 0.1, rotation: 25 },
@@ -69,7 +69,7 @@ export default function ContactCard() {
   ];
 
   return (
-    <section id="contact" className="py-12 md:py-20 flex items-center justify-center relative overflow-hidden bg-[#1a1a1a] text-[#D1D1C7]">
+    <section id="contact" className="py-12 md:py-20 flex items-center justify-center relative overflow-hidden bg-[#080807] text-[#D1D1C7]">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -82,16 +82,16 @@ export default function ContactCard() {
           <motion.div
             key={index}
             initial={{ opacity: 0, scale: 0 }}
-            animate={{ 
-              opacity: 0.05, 
+            animate={{
+              opacity: 0.05,
               scale: 1,
               x: hasScrolled ? shape.x / 2 : shape.x,
               y: hasScrolled ? shape.y / 2 : shape.y,
               rotate: shape.rotation
             }}
-            transition={{ 
-              delay: shape.delay, 
-              duration: 0.8, 
+            transition={{
+              delay: shape.delay,
+              duration: 0.8,
               ease: "easeOut",
               opacity: { duration: 1.2 }
             }}
@@ -102,8 +102,8 @@ export default function ContactCard() {
 
         {/* Heading with word-by-word animation */}
         <div className="mb-6 md:mb-8 overflow-hidden">
-          <motion.div 
-            initial={{ y: 20 }} 
+          <motion.div
+            initial={{ y: 20 }}
             whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
@@ -115,8 +115,8 @@ export default function ContactCard() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.5, 
+                transition={{
+                  duration: 0.5,
                   delay: index * 0.1 + 0.3,
                   ease: "easeOut"
                 }}
@@ -137,9 +137,9 @@ export default function ContactCard() {
 >
           Let's Make It Happen!
         </motion.p>
-        
+
         {/* Features */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -151,7 +151,7 @@ export default function ContactCard() {
             { icon: Clock, text: "At Your Own Time" },
             { icon: MessageSquare, text: "Let's Discuss Your Needs" }
           ].map((item, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -159,7 +159,7 @@ export default function ContactCard() {
               transition={{ duration: 0.4, delay: 0.9 + (index * 0.1) }}
               className="flex flex-col items-center p-4"
             >
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 className="bg-blue-500/10 p-3 md:p-4 rounded-xl mb-3"
               >
@@ -169,14 +169,14 @@ export default function ContactCard() {
             </motion.div>
           ))}
         </motion.div>
-        
+
         {/* Redesigned Cal.com popup button */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ 
-            duration: 0.6, 
+          transition={{
+            duration: 0.6,
             delay: 1.2,
             type: "spring",
             stiffness: 200
@@ -198,7 +198,7 @@ export default function ContactCard() {
               animate={{ x: isHovering ? '200%' : '-100%' }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
             />
-            
+
             <motion.div
               animate={{ rotate: isHovering ? 15 : 0 }}
               transition={{ duration: 0.3 }}
@@ -206,14 +206,14 @@ export default function ContactCard() {
             >
               <PhoneCall className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10" />
             </motion.div>
-            
+
             <span className="relative z-10">Book a Call</span>
-            
+
             <motion.div
               initial={{ x: -5, opacity: 0 }}
-              animate={{ 
-                x: isHovering ? 0 : -5, 
-                opacity: isHovering ? 1 : 0 
+              animate={{
+                x: isHovering ? 0 : -5,
+                opacity: isHovering ? 1 : 0
               }}
               transition={{ duration: 0.3 }}
               className="flex-shrink-0"
@@ -221,8 +221,8 @@ export default function ContactCard() {
               <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
             </motion.div>
           </motion.button>
-          
-          
+
+
           {/* Enhanced pulsing effect */}
           <AnimatePresence>
             {isHovering && (
@@ -231,7 +231,7 @@ export default function ContactCard() {
                   initial={{ scale: 1, opacity: 0 }}
                   animate={{ scale: 1.1, opacity: 0.2 }}
                   exit={{ scale: 1.2, opacity: 0 }}
-                  transition={{ 
+                  transition={{
                     repeat: Infinity,
                     duration: 1.5,
                     ease: "easeOut"
@@ -243,7 +243,7 @@ export default function ContactCard() {
                   initial={{ scale: 1, opacity: 0 }}
                   animate={{ scale: 1.2, opacity: 0.1 }}
                   exit={{ scale: 1.3, opacity: 0 }}
-                  transition={{ 
+                  transition={{
                     repeat: Infinity,
                     duration: 2,
                     ease: "easeOut",

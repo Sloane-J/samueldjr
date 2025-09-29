@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
-import { Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { Github, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const projects = [
   {
@@ -25,8 +25,7 @@ const projects = [
   },
   {
     title: "Grain and Gradient",
-    description:
-      "Grain & Gradient is a modern digital publication offering a blend of insightful and entertaining content across various topics, including technology, current affairs, entertainment, and more. The website features a range of articles.",
+    description: "Grain & Gradient is a modern digital publication offering a blend of insightful and entertaining content across various topics, including technology, current affairs, entertainment, and more. The website features a range of articles.",
     tags: [
       "React.js",
       "TypeScript",
@@ -46,8 +45,7 @@ const projects = [
   },
   {
     title: "Q-Vault",
-    description:
-      "Q-Vault is a web-based platform designed to streamline the examination process for educational institutions. It offers a comprehensive suite of tools for administrators, educators, and students, aiming to enhance efficiency, security, and user experience.",
+    description: "Q-Vault is a web-based platform designed to streamline the examination process for educational institutions. It offers a comprehensive suite of tools for administrators, educators, and students, aiming to enhance efficiency, security, and user experience.",
     tags: ["Laravel", "Tailwind CSS", "Livewire"],
     liveUrl: "#",
     githubUrl: "https://github.com/Q-Vault",
@@ -61,8 +59,7 @@ const projects = [
   },
   {
     title: "Peer Tech Konnect",
-    description:
-      "Peer Tech Konnect is a web based Learning Management System (LMS) designed to connect students, tutors, and administrators in a unified education environment. It offers user authentication, course enrollment, tutor approvals, discussions, assignments, quizzes, grading, analytics, and real-time email notifications.",
+    description: "Peer Tech Konnect is a web based Learning Management System (LMS) designed to connect students, tutors, and administrators in a unified education environment. It offers user authentication, course enrollment, tutor approvals, discussions, assignments, quizzes, grading, analytics, and real-time email notifications.",
     tags: ["PHP", "HTML", "Bootstrap", "JavaScript"],
     liveUrl: "#",
     githubUrl: "https://github.com/LMS",
@@ -82,21 +79,19 @@ const ImageSlider = ({ images, projectTitle, className = "" }) => {
   const sliderRef = useRef(null);
 
   const goToPrevious = useCallback(() => {
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setCurrentIndex(prev => prev === 0 ? images.length - 1 : prev - 1);
   }, [images.length]);
 
   const goToNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    setCurrentIndex(prev => (prev + 1) % images.length);
   }, [images.length]);
 
   const handleImageLoad = useCallback((index) => {
-    setImageLoaded((prev) => ({ ...prev, [index]: true }));
+    setImageLoaded(prev => ({ ...prev, [index]: true }));
   }, []);
 
   return (
-    <div
-      className={`relative w-full h-full rounded-2xl overflow-hidden group ${className}`}
-    >
+    <div className={`relative w-full h-full rounded-2xl overflow-hidden group ${className}`}>
       {/* Navigation buttons */}
       {images.length > 1 && (
         <>
@@ -126,7 +121,10 @@ const ImageSlider = ({ images, projectTitle, className = "" }) => {
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {images.map((image, index) => (
-            <div key={index} className="w-full h-full flex-shrink-0 relative">
+            <div
+              key={index}
+              className="w-full h-full flex-shrink-0 relative"
+            >
               {!imageLoaded[index] && (
                 <div className="absolute inset-0 bg-gray-800/50 flex items-center justify-center z-10">
                   <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -153,8 +151,8 @@ const ImageSlider = ({ images, projectTitle, className = "" }) => {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`rounded-full transition-all duration-300 ${
-                currentIndex === index
-                  ? "bg-white w-8 h-2"
+                currentIndex === index 
+                  ? "bg-white w-8 h-2" 
                   : "bg-white/50 hover:bg-white/75 w-2 h-2"
               }`}
               aria-label={`Go to image ${index + 1}`}
@@ -171,16 +169,13 @@ const ProjectSection = ({ project, index, isActive, scrollProgress }) => {
   const numberRef = useRef(null);
 
   // Calculate display number based on scroll progress
-  const displayNumber = Math.max(
-    1,
-    Math.min(projects.length, Math.floor(scrollProgress * projects.length) + 1)
-  );
+  const displayNumber = Math.max(1, Math.min(projects.length, Math.floor(scrollProgress * projects.length) + 1));
 
   return (
     <section
       ref={sectionRef}
       className={`min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black transition-all duration-1000 ${
-        isActive ? "opacity-100" : "opacity-95"
+        isActive ? 'opacity-100' : 'opacity-95'
       }`}
       data-project={index}
     >
@@ -190,29 +185,30 @@ const ProjectSection = ({ project, index, isActive, scrollProgress }) => {
 
       <div className="container mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          
           {/* Left Side - Content */}
           <div className="space-y-8">
             {/* Project Number with morphing effect */}
             <div className="overflow-hidden">
-              <span
+              <span 
                 ref={numberRef}
                 className="text-8xl lg:text-9xl font-bold text-white/10 leading-none block transition-all duration-700 ease-out"
                 style={{
-                  transform: isActive ? "translateY(0)" : "translateY(50px)",
-                  opacity: isActive ? 1 : 0.5,
+                  transform: isActive ? 'translateY(0)' : 'translateY(50px)',
+                  opacity: isActive ? 1 : 0.5
                 }}
               >
-                {String(isActive ? index + 1 : displayNumber).padStart(2, "0")}
+                {String(isActive ? index + 1 : displayNumber).padStart(2, '0')}
               </span>
             </div>
 
             {/* Project Title */}
             <div className="overflow-hidden">
-              <h2
+              <h2 
                 className="text-4xl lg:text-6xl font-bold text-white leading-tight transition-all duration-700 ease-out delay-100"
                 style={{
-                  transform: isActive ? "translateY(0)" : "translateY(30px)",
-                  opacity: isActive ? 1 : 0.7,
+                  transform: isActive ? 'translateY(0)' : 'translateY(30px)',
+                  opacity: isActive ? 1 : 0.7
                 }}
               >
                 {project.title}
@@ -221,11 +217,11 @@ const ProjectSection = ({ project, index, isActive, scrollProgress }) => {
 
             {/* Project Description */}
             <div className="overflow-hidden">
-              <p
+              <p 
                 className="text-lg lg:text-xl text-gray-300 leading-relaxed max-w-2xl transition-all duration-700 ease-out delay-200"
                 style={{
-                  transform: isActive ? "translateY(0)" : "translateY(20px)",
-                  opacity: isActive ? 1 : 0.8,
+                  transform: isActive ? 'translateY(0)' : 'translateY(20px)',
+                  opacity: isActive ? 1 : 0.8
                 }}
               >
                 {project.description}
@@ -233,11 +229,11 @@ const ProjectSection = ({ project, index, isActive, scrollProgress }) => {
             </div>
 
             {/* Tags */}
-            <div
+            <div 
               className="flex flex-wrap gap-3 transition-all duration-700 ease-out delay-300"
               style={{
-                transform: isActive ? "translateY(0)" : "translateY(15px)",
-                opacity: isActive ? 1 : 0.7,
+                transform: isActive ? 'translateY(0)' : 'translateY(15px)',
+                opacity: isActive ? 1 : 0.7
               }}
             >
               {project.tags.map((tag, tagIndex) => (
@@ -245,7 +241,7 @@ const ProjectSection = ({ project, index, isActive, scrollProgress }) => {
                   key={tag}
                   className="px-4 py-2 text-sm bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-white/20 transition-all duration-300"
                   style={{
-                    transitionDelay: `${300 + tagIndex * 50}ms`,
+                    transitionDelay: `${300 + tagIndex * 50}ms`
                   }}
                 >
                   {tag}
@@ -254,11 +250,11 @@ const ProjectSection = ({ project, index, isActive, scrollProgress }) => {
             </div>
 
             {/* Action Buttons */}
-            <div
+            <div 
               className="flex flex-col sm:flex-row gap-4 transition-all duration-700 ease-out delay-500"
               style={{
-                transform: isActive ? "translateY(0)" : "translateY(10px)",
-                opacity: isActive ? 1 : 0.8,
+                transform: isActive ? 'translateY(0)' : 'translateY(10px)',
+                opacity: isActive ? 1 : 0.8
               }}
             >
               <a
@@ -286,17 +282,15 @@ const ProjectSection = ({ project, index, isActive, scrollProgress }) => {
 
           {/* Right Side - Image Slider */}
           <div className="relative">
-            <div
+            <div 
               className="aspect-[4/3] lg:aspect-[3/2] transition-all duration-700 ease-out delay-200"
               style={{
-                transform: isActive
-                  ? "scale(1) translateY(0)"
-                  : "scale(0.95) translateY(20px)",
-                opacity: isActive ? 1 : 0.8,
+                transform: isActive ? 'scale(1) translateY(0)' : 'scale(0.95) translateY(20px)',
+                opacity: isActive ? 1 : 0.8
               }}
             >
-              <ImageSlider
-                images={project.images}
+              <ImageSlider 
+                images={project.images} 
                 projectTitle={project.title}
                 className="w-full h-full"
               />
@@ -320,21 +314,18 @@ const Projects = () => {
       const rect = containerRef.current.getBoundingClientRect();
       const containerHeight = containerRef.current.offsetHeight;
       const viewportHeight = window.innerHeight;
-
+      
       // Calculate scroll progress (0 to 1)
       const scrollTop = -rect.top;
       const maxScroll = containerHeight - viewportHeight;
       const progress = Math.max(0, Math.min(1, scrollTop / maxScroll));
-
+      
       setScrollProgress(progress);
 
       // Determine active project based on scroll position
       const projectIndex = Math.floor(progress * projects.length);
-      const clampedIndex = Math.max(
-        0,
-        Math.min(projects.length - 1, projectIndex)
-      );
-
+      const clampedIndex = Math.max(0, Math.min(projects.length - 1, projectIndex));
+      
       if (clampedIndex !== activeProject) {
         setActiveProject(clampedIndex);
       }
@@ -352,19 +343,19 @@ const Projects = () => {
       }
     };
 
-    window.addEventListener("scroll", throttledScroll);
+    window.addEventListener('scroll', throttledScroll);
     handleScroll(); // Initial call
 
-    return () => window.removeEventListener("scroll", throttledScroll);
+    return () => window.removeEventListener('scroll', throttledScroll);
   }, [activeProject]);
 
   return (
     <div ref={containerRef} className="relative">
       {projects.map((project, index) => (
-        <ProjectSection
+        <ProjectSection 
           key={`project-${index}`}
-          project={project}
-          index={index}
+          project={project} 
+          index={index} 
           isActive={activeProject === index}
           scrollProgress={scrollProgress}
         />

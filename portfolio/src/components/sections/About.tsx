@@ -75,9 +75,9 @@ export default function About() {
       transition: { duration: 0.7, ease: "easeOut" }
     }
   }
- 
+
   return (
-    <section id="about" className="min-h-screen text-[#D1D1C7] flex flex-col">
+    <section id="about" className="min-h-screen bg-[#080807] flex flex-col">
       {/* Header Section */}
       <div className="flex-shrink-0 pt-16 pb-8">
         <div className="container mx-auto px-6">
@@ -137,11 +137,11 @@ export default function About() {
                 <motion.div variants={itemVariants}>
                   <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
                     Hi, I'm{" "}
-                    <span className="font-soul bg-gradient-to-r from-orange-400 via-pink-500 to-blue-500 bg-clip-text text-transparent">
+                    <span className="font-playfair bg-gradient-to-r from-orange-400 via-pink-500 to-blue-500 bg-clip-text text-transparent">
                       Samuel Dorkey Jr
                     </span>
                   </h3>
-                  <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-blue-500 rounded-full"></div>
+                  
                 </motion.div>
 
                 <motion.p variants={itemVariants} className="text-[#D1D1C7] text-lg lg:text-xl leading-relaxed opacity-90">

@@ -1,38 +1,40 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Laptop, Search, Rocket, PenTool, Database } from "lucide-react"
+import { motion } from "framer-motion";
+import { Laptop, Search, Rocket, PenTool, Database } from "lucide-react";
 
 const services = [
   {
     title: "Front-End Web Development",
     icon: Laptop,
     iconColor: "#FF5733", // Orange
-    description: "Custom web applications built with modern frameworks and best practices.",
-    tools: "Astrojs, React, TypeScript, Tailwind CSS, Framer Motion, Hugo"
+    description:
+      "Custom web applications built with modern frameworks and best practices.",
+    tools: "Astrojs, React, TypeScript, Tailwind CSS, Framer Motion, Hugo",
   },
   {
     title: "SEO Optimization",
     icon: Search,
     iconColor: "#4CAF50", // Green
-    description: "Improve your website's visibility and ranking in search engines.",
-    tools: "Google Analytics, SEMrush, Ahrefs, Moz, Schema Markup"
+    description:
+      "Improve your website's visibility and ranking in search engines.",
+    tools: "Google Analytics, SEMrush, Ahrefs, Moz, Schema Markup",
   },
   {
     title: "Wireframe Design",
     icon: PenTool,
     iconColor: "#E91E63", // Pink
     description: "User-centered design solutions that enhance user experience.",
-    tools: "Figma, Adobe XD, Sketch, InVision, Zeplin"
+    tools: "Figma, Adobe XD, Sketch, InVision, Zeplin",
   },
   {
     title: "Full-Stack Development",
     icon: Database,
     iconColor: "#2196F3", // Blue
     description: "Robust and scalable backend solutions for your applications.",
-    tools: "Laravel, PHP, MySql, Supabase, Firebase, Sqlite"
+    tools: "Laravel, PHP, MySql, Supabase, Firebase, Sqlite",
   },
-]
+];
 
 export default function Services() {
   // Animation variants for staggered card animation from left
@@ -42,19 +44,19 @@ export default function Services() {
       opacity: 1,
       transition: {
         staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
-  }
+        delayChildren: 0.2,
+      },
+    },
+  };
 
   const cardVariants = {
     hidden: { opacity: 0, x: -40 },
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  }
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
 
   // Animation variants for text content from right
   const textContainerVariants = {
@@ -63,19 +65,19 @@ export default function Services() {
       opacity: 1,
       transition: {
         staggerChildren: 0.15,
-        delayChildren: 0.4
-      }
-    }
-  }
+        delayChildren: 0.4,
+      },
+    },
+  };
 
   const textItemVariants = {
     hidden: { opacity: 0, x: 40 },
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  }
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
 
   return (
     <section id="services" className="min-h-screen bg-[#080807] flex flex-col">
@@ -89,8 +91,10 @@ export default function Services() {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-[#D1D1C7]">Services</h2>
-            <p className="text-[#D1D1C7] text-lg md:text-xl max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
+              Services
+            </h2>
+            <p className="text-white text-lg md:text-xl max-w-2xl mx-auto font-inter">
               Comprehensive solutions for your digital needs
             </p>
           </motion.div>
@@ -101,7 +105,6 @@ export default function Services() {
       <div className="flex-1 flex items-center">
         <div className="container mx-auto px-6 w-full">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center min-h-[600px]">
-
             {/* Left side - Service Cards (7 columns) */}
             <motion.div
               className="lg:col-span-7 grid sm:grid-cols-2 gap-5 lg:gap-6"
@@ -117,16 +120,28 @@ export default function Services() {
                   whileHover={{ y: -6, scale: 1.02 }}
                   className="bg-gradient-to-br from-[#232323] to-[#1a1a1a] rounded-lg p-5 hover:from-[#2a2a2a] hover:to-[#232323] transition-all duration-300 border border-gray-800 hover:border-gray-700 shadow-lg"
                 >
-                  <div className="mb-4 inline-flex p-3 rounded-lg" style={{ backgroundColor: `${service.iconColor}15` }}>
-                    <service.icon className="w-7 h-7" style={{ color: service.iconColor }} />
+                  <div
+                    className="mb-4 inline-flex p-3 rounded-lg"
+                    style={{ backgroundColor: `${service.iconColor}15` }}
+                  >
+                    <service.icon
+                      className="w-7 h-7"
+                      style={{ color: service.iconColor }}
+                    />
                   </div>
-                  <h3 className="text-lg lg:text-xl text-[#D1D1C7] font-bold mb-2">{service.title}</h3>
-                  <p className="text-[#D1D1C7] text-sm mb-3 opacity-90 leading-relaxed">{service.description}</p>
-                  <div className="mt-3 pt-3 border-t border-gray-700">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-[#D1D1C7] mb-1 opacity-80">
+                  <h3 className="text-lg lg:text-xl text-white font-bold mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-white text-sm mb-3 opacity-90 leading-relaxed font-inter">
+                    {service.description}
+                  </p>
+                  <div className="mt-3 pt-3 border-t border-gray-700 font-inter">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-white mb-1 opacity-80">
                       Tools & Technologies
                     </p>
-                    <p className="text-[#D1D1C7] text-xs opacity-75 leading-relaxed">{service.tools}</p>
+                    <p className="text-white text-xs opacity-75 leading-relaxed ">
+                      {service.tools}
+                    </p>
                   </div>
                 </motion.div>
               ))}
@@ -142,36 +157,39 @@ export default function Services() {
             >
               <motion.h3
                 variants={textItemVariants}
-                className="text-3xl lg:text-4xl xl:text-5xl font-bold text-[#D1D1C7] leading-tight"
+                className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight"
               >
                 Elevate Your Digital Presence
               </motion.h3>
 
               <motion.p
                 variants={textItemVariants}
-                className="text-[#D1D1C7] text-base lg:text-lg opacity-90 leading-relaxed"
+                className="text-white text-base lg:text-lg opacity-90 leading-relaxed font-inter"
               >
-                In today's competitive landscape, your digital presence is more important than ever. I provide end-to-end solutions that help businesses stand out and achieve their goals.
+                In today's competitive landscape, your digital presence is more
+                important than ever. I provide end-to-end solutions that help
+                businesses stand out and achieve their goals.
               </motion.p>
 
               <motion.p
                 variants={textItemVariants}
-                className="text-[#D1D1C7] text-base lg:text-lg opacity-90 leading-relaxed"
+                className="text-white text-base lg:text-lg opacity-90 leading-relaxed font-inter"
               >
-                From conceptualization to deployment, I handle every aspect of the development process with meticulous attention to detail and a focus on delivering exceptional results.
+                From conceptualization to deployment, I handle every aspect of
+                the development process with meticulous attention to detail and
+                a focus on delivering exceptional results.
               </motion.p>
 
               <motion.p
                 variants={textItemVariants}
-                className="text-[#D1D1C7] text-base lg:text-lg opacity-90 leading-relaxed"
+                className="text-white text-base lg:text-lg opacity-90 leading-relaxed font-inter"
               >
-                Every project is approached with a strategic mindset, ensuring that the solutions I provide not only meet your immediate needs but also support your long-term business objectives.
+                Every project is approached with a strategic mindset, ensuring
+                that the solutions I provide not only meet your immediate needs
+                but also support your long-term business objectives.
               </motion.p>
 
-              <motion.div
-                variants={textItemVariants}
-                className="pt-4"
-              >
+              <motion.div variants={textItemVariants} className="pt-4">
                 <a
                   href="#contact"
                   className="inline-flex items-center bg-gradient-to-r from-orange-600 to-orange-400 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-orange-400 hover:to-orange-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25"
@@ -185,5 +203,5 @@ export default function Services() {
         </div>
       </div>
     </section>
-  )
+  );
 }

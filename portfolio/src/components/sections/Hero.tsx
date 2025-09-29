@@ -115,7 +115,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center bg-[#0C0E0C]"
+      className="min-h-screen flex items-center bg-[#080807]"
       aria-labelledby="hero-heading"
     >
       <div className="container mx-auto px-8 lg:px-16">
@@ -129,25 +129,8 @@ export default function Hero() {
           >
             <motion.div variants={itemVariants}>
               <div className="inline-block mb-8 px-4 py-2 bg-[#171717] rounded-full border border-gray-600/30">
-                <span className="flex items-center gap-1 text-sm bg-gradient-to-r from-white to-grey-200 bg-clip-text text-transparent font-medium">
+                <span className="flex items-center gap-1 text-sm bg-gradient-to-r from-white to-stone-50 bg-clip-text text-transparent font-medium">
                   Available for new projects
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="icon icon-tabler icons-tabler-outline icon-tabler-rocket"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3" />
-                    <path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3" />
-                    <path d="M15 9m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                  </svg>
                 </span>
               </div>
 
@@ -247,7 +230,7 @@ export default function Hero() {
             <div className="relative group">
               <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl ring-4 ring-[#171717] ring-offset-4 ring-offset-[#0C0E0C] transition-all duration-300 group-hover:ring-gray-600">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+                  src="/images/Profile-Pic.jpg"
                   alt="Samuel - Full Stack Developer"
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                 />
