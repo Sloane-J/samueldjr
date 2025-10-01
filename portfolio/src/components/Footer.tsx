@@ -63,7 +63,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="min-h-[50vh] flex flex-col relative overflow-hidden">
+    <footer className="min-h-[50vh] flex flex-col relative overflow-hidden bg-[#080807]">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-72 h-72 bg-orange-500 rounded-full blur-3xl"></div>

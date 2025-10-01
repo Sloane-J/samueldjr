@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Calendar, Clock, ArrowRight, Tag } from "lucide-react"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Calendar, Clock, ArrowRight, Tag } from "lucide-react";
 
 // Blog post data structure
 interface BlogPost {
-  id: string
-  title: string
-  excerpt: string
-  date: string
-  readTime: string
-  category: string
-  image: string
-  tags: string[]
-  slug: string
+  id: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  readTime: string;
+  category: string;
+  image: string;
+  tags: string[];
+  slug: string;
 }
 
 // Sample blog posts
@@ -27,7 +27,7 @@ const blogPosts: BlogPost[] = [
     date: "2024-02-20",
     readTime: "5 min read",
     category: "Development",
-    image: "/placeholder.svg",
+    image: "images/placeholder.avif",
     tags: ["React", "TypeScript", "Web Development"],
     slug: "building-modern-web-applications",
   },
@@ -39,31 +39,34 @@ const blogPosts: BlogPost[] = [
     date: "2024-02-15",
     readTime: "4 min read",
     category: "Design",
-    image: "/placeholder.svg",
+    image: "images/placeholder.avif",
     tags: ["Animation", "React", "Framer Motion"],
     slug: "mastering-framer-motion",
   },
   {
     id: "3",
     title: "The Future of Web Development: What to Expect in 2024",
-    excerpt: "Exploring upcoming trends and technologies that will shape the future of web development.",
+    excerpt:
+      "Exploring upcoming trends and technologies that will shape the future of web development.",
     date: "2024-02-10",
     readTime: "6 min read",
     category: "Technology",
-    image: "/placeholder.svg",
+    image: "images/placeholder.avif",
     tags: ["Web Development", "Trends", "Technology"],
     slug: "future-of-web-development",
   },
-]
+];
 
 // Get unique categories from blog posts
-const categories = Array.from(new Set(blogPosts.map((post) => post.category)))
+const categories = Array.from(new Set(blogPosts.map((post) => post.category)));
 
 export default function Blog() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("All")
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
   const filteredPosts =
-    selectedCategory === "All" ? blogPosts : blogPosts.filter((post) => post.category === selectedCategory)
+    selectedCategory === "All"
+      ? blogPosts
+      : blogPosts.filter((post) => post.category === selectedCategory);
 
   return (
     <section id="blog" className="py-20 bg-[#080807]">
@@ -75,8 +78,12 @@ export default function Blog() {
           transition={{ duration: 0.5 }}
           className="max-w-4xl mx-auto text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Latest Articles</h2>
-          <p className="text-gray-400 text-lg">Thoughts, insights, and tutorials about web development and design</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Latest Articles
+          </h2>
+          <p className="text-gray-400 text-lg">
+            Thoughts, insights, and tutorials about web development and design
+          </p>
         </motion.div>
 
         {/* Category Filter */}
@@ -85,7 +92,9 @@ export default function Blog() {
             key="all"
             onClick={() => setSelectedCategory("All")}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              selectedCategory === "All" ? "bg-white text-[#121212]" : "bg-[#232323] text-gray-300 hover:bg-[#2a2a2a]"
+              selectedCategory === "All"
+                ? "bg-white text-[#121212]"
+                : "bg-[#232323] text-gray-300 hover:bg-[#2a2a2a]"
             }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -122,12 +131,14 @@ export default function Blog() {
             >
               <div className="relative aspect-video overflow-hidden">
                 <img
-                  src={post.image || "/placeholder.svg"}
+                  src={post.image || "images/placeholder.avif"}
                   alt={post.title}
                   className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-sm">{post.category}</span>
+                  <span className="bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-sm">
+                    {post.category}
+                  </span>
                 </div>
               </div>
               <div className="p-6">
@@ -141,11 +152,18 @@ export default function Blog() {
                     <span>{post.readTime}</span>
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-2 line-clamp-2">{post.title}</h3>
-                <p className="text-gray-400 mb-4 line-clamp-3">{post.excerpt}</p>
+                <h3 className="text-xl font-semibold mb-2 line-clamp-2">
+                  {post.title}
+                </h3>
+                <p className="text-gray-400 mb-4 line-clamp-3">
+                  {post.excerpt}
+                </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {post.tags.map((tag) => (
-                    <span key={tag} className="text-sm px-3 py-1 bg-white/5 rounded-full flex items-center gap-1">
+                    <span
+                      key={tag}
+                      className="text-sm px-3 py-1 bg-white/5 rounded-full flex items-center gap-1"
+                    >
                       <Tag className="w-3 h-3" />
                       {tag}
                     </span>
@@ -163,6 +181,5 @@ export default function Blog() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

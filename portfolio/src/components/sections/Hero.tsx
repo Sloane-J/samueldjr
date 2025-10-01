@@ -129,7 +129,7 @@ export default function Hero() {
           >
             <motion.div variants={itemVariants}>
               <div className="inline-block mb-8 px-4 py-2 bg-[#171717] rounded-full border border-gray-600/30">
-                <span className="flex items-center gap-1 text-sm bg-gradient-to-r from-white to-stone-50 bg-clip-text text-transparent font-medium">
+                <span className="flex items-center gap-1 text-sm from-white font-medium">
                   Available for new projects
                 </span>
               </div>
@@ -153,7 +153,7 @@ export default function Hero() {
                       "User Experiences",
                       "Digital Solutions",
                     ]}
-                    mainClassName="px-5 py-2.5 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-full shadow-md font-semibold text-lg md:text-xl"
+                    mainClassName="px-5 py-2.5 text-white font-semibold text-xl md:text-xl"
                     staggerFrom="last"
                     initial={{ y: "100%" }}
                     animate={{ y: 0 }}
