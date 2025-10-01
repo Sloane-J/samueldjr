@@ -1,45 +1,45 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion, useScroll, AnimatePresence } from "framer-motion"
-import { Menu, X, Home, User, Briefcase, FolderOpen, MessageSquare, Star } from "lucide-react"
+import { useState, useEffect } from "react";
+import { motion, useScroll, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 export default function CornerMenu() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("home")
-  const { scrollY } = useScroll()
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const { scrollY } = useScroll();
 
   useEffect(() => {
     const unsubscribe = scrollY.on("change", (latest) => {
-      setIsScrolled(latest > 100)
-    })
-    return () => unsubscribe()
-  }, [scrollY])
+      setIsScrolled(latest > 100);
+    });
+    return () => unsubscribe();
+  }, [scrollY]);
 
   const navItems = [
-    { name: "Home", href: "#home"},
-    { name: "About", href: "#about"},
-    { name: "Services", href: "#services"},
-    { name: "Portfolio", href: "#portfolio"},
-    { name: "Testimonials", href: "#testimonials"},
-    { name: "Contact", href: "#contact"}
-  ]
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Services", href: "#services" },
+    { name: "Projects", href: "#projects" },
+    { name: "Testimonials", href: "#testimonials" },
+    { name: "Contact", href: "#contact" },
+  ];
 
   const handleNavClick = (href, name) => {
-    setActiveSection(name.toLowerCase())
-    setIsMenuOpen(false)
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" })
-  }
+    setActiveSection(name.toLowerCase());
+    setIsMenuOpen(false);
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   // Close menu on escape key
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape') setIsMenuOpen(false)
-    }
-    document.addEventListener('keydown', handleEscape)
-    return () => document.removeEventListener('keydown', handleEscape)
-  }, [])
+      if (e.key === "Escape") setIsMenuOpen(false);
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, []);
 
   return (
     <>
@@ -93,8 +93,16 @@ export default function CornerMenu() {
               {/* Subtle pulse animation */}
               <motion.div
                 className="absolute inset-0 rounded-full border border-white/20"
-                animate={isMenuOpen ? {} : { scale: [1, 1.1, 1], opacity: [0.5, 0, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                animate={
+                  isMenuOpen
+                    ? {}
+                    : { scale: [1, 1.1, 1], opacity: [0.5, 0, 0.5] }
+                }
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               />
             </motion.button>
           </motion.div>
@@ -115,7 +123,7 @@ export default function CornerMenu() {
               onClick={() => setIsMenuOpen(false)}
             />
 
-            {/* Menu Panel - Takes up half the viewport */}
+            {/* Menu Panel */}
             <motion.div
               className="fixed inset-y-0 right-0 w-full sm:w-1/2 bg-[#121212]/95 backdrop-blur-xl border-l border-white/10 z-50 flex flex-col"
               initial={{ x: "100%" }}
@@ -126,13 +134,11 @@ export default function CornerMenu() {
               {/* Header */}
               <div className="flex items-center justify-between p-6 md:p-8 border-b border-white/10">
                 <motion.h2
-                  className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
+                  className="text-xl md:text-2xl font-bold bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1, duration: 0.5 }}
-                >
-
-                </motion.h2>
+                />
                 <motion.button
                   onClick={() => setIsMenuOpen(false)}
                   className="p-2 text-gray-400 hover:text-white transition-colors rounded-full hover:bg-white/5"
@@ -147,12 +153,10 @@ export default function CornerMenu() {
               </div>
 
               {/* Navigation Items */}
-              <div className="flex-1 flex flex-col justify-center px-6 md:px-8 -mt-16">
+              <div className="flex-1 flex flex-col justify-center px-6 md:px-8 -mt-8">
                 <nav className="space-y-4 md:space-y-6">
                   {navItems.map((item, index) => {
-
-                    const isActive = activeSection === item.name.toLowerCase()
-
+                    const isActive = activeSection === item.name.toLowerCase();
                     return (
                       <motion.button
                         key={item.name}
@@ -161,19 +165,15 @@ export default function CornerMenu() {
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{
-                          delay: 0.3 + (index * 0.1),
+                          delay: 0.3 + index * 0.1,
                           duration: 0.6,
-                          ease: "easeOut"
+                          ease: "easeOut",
                         }}
                         whileHover={{ x: 10 }}
                       >
-                        {/* Icon */}
-
-
-                        {/* Text */}
                         <div className="flex-1 min-w-0">
                           <motion.h3
-                            className={`text-3xl md:text-4xl lg:text-5xl font-bold transition-all duration-300 ${
+                            className={`text-xl md:text-2xl lg:text-3xl font-bold transition-all duration-300 ${
                               isActive
                                 ? "text-white"
                                 : "text-gray-300 group-hover:text-white"
@@ -185,11 +185,11 @@ export default function CornerMenu() {
 
                           {/* Active indicator line */}
                           <motion.div
-                            className="h-1 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full mt-2 md:mt-3"
+                            className="h-1 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full mt-1"
                             initial={false}
                             animate={{
                               scaleX: isActive ? 1 : 0,
-                              opacity: isActive ? 1 : 0
+                              opacity: isActive ? 1 : 0,
                             }}
                             transition={{ duration: 0.3 }}
                             style={{ originX: 0 }}
@@ -198,17 +198,22 @@ export default function CornerMenu() {
 
                         {/* Number indicator */}
                         <motion.div
-                          className={`text-2xl md:text-3xl font-light transition-colors ${
-                            isActive ? "text-blue-400" : "text-gray-600 group-hover:text-gray-400"
+                          className={`text-base md:text-lg font-light transition-colors ${
+                            isActive
+                              ? "text-blue-400"
+                              : "text-gray-600 group-hover:text-gray-400"
                           }`}
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
-                          transition={{ delay: 0.5 + (index * 0.1), duration: 0.4 }}
+                          transition={{
+                            delay: 0.5 + index * 0.1,
+                            duration: 0.4,
+                          }}
                         >
                           0{index + 1}
                         </motion.div>
                       </motion.button>
-                    )
+                    );
                   })}
                 </nav>
               </div>
@@ -220,8 +225,12 @@ export default function CornerMenu() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
               >
-                <p className="text-gray-400 text-sm md:text-base">
-                  Use <kbd className="px-2 py-1 bg-white/10 rounded text-xs">ESC</kbd> to close
+                <p className="text-gray-400 text-xs md:text-sm">
+                  Use{" "}
+                  <kbd className="px-2 py-1 bg-white/10 rounded text-xs">
+                    ESC
+                  </kbd>{" "}
+                  to close
                 </p>
               </motion.div>
             </motion.div>
@@ -229,5 +238,5 @@ export default function CornerMenu() {
         )}
       </AnimatePresence>
     </>
-  )
+  );
 }
