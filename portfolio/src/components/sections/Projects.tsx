@@ -24,7 +24,7 @@ const projects = [
     ],
   },
   {
-    title: "Grain and Gradient",
+    title: "Grain & Gradient",
     description:
       "Grain & Gradient is a modern digital publication offering a blend of insightful and entertaining content across various topics, including technology, current affairs, entertainment, and more. The website features a range of articles.",
     tags: [
@@ -298,14 +298,14 @@ const ProjectCard = ({ project, index, sectionProgress, allProjects }) => {
                   opacity: descReveal,
                 }}
               >
-                <p className="text-sm md:text-base lg:text-lg text-gray-300 leading-relaxed max-w-xl">
+                <p className="text-sm md:text-base lg:text-lg text-gray-300 leading-relaxed max-w-xl font-inter">
                   {project.description}
                 </p>
               </div>
 
               {/* Tags */}
               <div
-                className="flex flex-wrap gap-1.5 md:gap-2"
+                className="flex flex-wrap gap-1.5 md:gap-2 font-inter"
                 style={{
                   transform: `translateY(${(1 - tagsReveal) * 15}px)`,
                   opacity: tagsReveal,
@@ -323,7 +323,7 @@ const ProjectCard = ({ project, index, sectionProgress, allProjects }) => {
 
               {/* Action Buttons */}
               <div
-                className="flex flex-col sm:flex-row gap-2 md:gap-3"
+                className="flex flex-col sm:flex-row gap-2 md:gap-3 font-inter"
                 style={{
                   transform: `translateY(${(1 - buttonsReveal) * 10}px)`,
                   opacity: buttonsReveal,
