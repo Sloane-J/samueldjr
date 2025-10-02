@@ -60,10 +60,10 @@ export default function Testimonials() {
           transition={{ duration: 0.5 }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-[#D1D1C7]">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-[#D1D1C7]">
             Testimonials
           </h2>
-          <p className="text-[#D1D1C7] text-base sm:text-lg">
+          <p className="text-[#D1D1C7] text-base sm:text-lg font-inter">
             What clients say about my work
           </p>
         </motion.div>
