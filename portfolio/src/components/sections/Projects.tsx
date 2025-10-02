@@ -79,7 +79,6 @@ const projects = [
 const ImageSlider = ({ images, projectTitle, className = "" }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState({});
-  const autoPlayRef = useRef(null);
 
   const goToPrevious = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
@@ -93,48 +92,12 @@ const ImageSlider = ({ images, projectTitle, className = "" }) => {
     setImageLoaded((prev) => ({ ...prev, [index]: true }));
   }, []);
 
-  // Auto-play functionality
-  useEffect(() => {
-    if (images.length > 1) {
-      autoPlayRef.current = setInterval(() => {
-        goToNext();
-      }, 4000);
-
-      return () => {
-        if (autoPlayRef.current) {
-          clearInterval(autoPlayRef.current);
-        }
-      };
-    }
-  }, [images.length, goToNext]);
-
-  // Reset auto-play when manually navigating
-  const handleManualNavigation = useCallback(
-    (direction) => {
-      if (autoPlayRef.current) {
-        clearInterval(autoPlayRef.current);
-      }
-
-      if (direction === "prev") {
-        goToPrevious();
-      } else {
-        goToNext();
-      }
-
-      // Restart auto-play
-      autoPlayRef.current = setInterval(() => {
-        goToNext();
-      }, 4000);
-    },
-    [goToPrevious, goToNext]
-  );
-
   return (
     <div className={`relative w-full h-full overflow-hidden ${className}`}>
       {images.length > 1 && (
         <>
           <button
-            onClick={() => handleManualNavigation("prev")}
+            onClick={goToPrevious}
             className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 md:w-10 md:h-10 bg-black/60 hover:bg-black/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
             aria-label="Previous image"
           >
@@ -142,7 +105,7 @@ const ImageSlider = ({ images, projectTitle, className = "" }) => {
           </button>
 
           <button
-            onClick={() => handleManualNavigation("next")}
+            onClick={goToNext}
             className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 md:w-10 md:h-10 bg-black/60 hover:bg-black/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
             aria-label="Next image"
           >
@@ -166,7 +129,7 @@ const ImageSlider = ({ images, projectTitle, className = "" }) => {
               <img
                 src={image.src}
                 alt={image.alt || `${projectTitle} screenshot ${index + 1}`}
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-contain object-center"
                 loading={index === 0 ? "eager" : "lazy"}
                 onLoad={() => handleImageLoad(index)}
               />
@@ -180,15 +143,7 @@ const ImageSlider = ({ images, projectTitle, className = "" }) => {
           {images.map((_, index) => (
             <button
               key={index}
-              onClick={() => {
-                if (autoPlayRef.current) {
-                  clearInterval(autoPlayRef.current);
-                }
-                setCurrentIndex(index);
-                autoPlayRef.current = setInterval(() => {
-                  goToNext();
-                }, 4000);
-              }}
+              onClick={() => setCurrentIndex(index)}
               className={`rounded-full transition-all duration-300 ${
                 currentIndex === index
                   ? "bg-white w-4 h-1.5 md:w-6 md:h-2"
@@ -210,23 +165,76 @@ const ProjectCard = ({ project, index, sectionProgress, allProjects }) => {
   const isInRange =
     sectionProgress >= cardStart - 0.04 && sectionProgress < cardEnd + 0.04;
 
-  // Calculate slide progress for vertical transitions
-  const getSlideProgress = () => {
+  const localProgress = Math.max(
+    0,
+    Math.min(1, (sectionProgress - cardStart) / (cardEnd - cardStart))
+  );
+
+  // Adjusted opacity and blur logic for 220vh
+  let opacity = 0;
+  let scale = 0.95;
+  let blur = 0;
+
+  if (sectionProgress < cardStart) {
+    opacity = 0;
+    scale = 0.95;
+    blur = 0;
+  } else if (
+    sectionProgress >= cardStart &&
+    sectionProgress < cardStart + 0.035
+  ) {
+    // Adjusted fade in (first 3.5%)
+    const fadeInProgress = (sectionProgress - cardStart) / 0.035;
+    opacity = fadeInProgress;
+    scale = 0.95 + fadeInProgress * 0.05;
+    blur = 0;
+  } else if (
+    sectionProgress >= cardStart + 0.035 &&
+    sectionProgress < cardEnd - 0.18
+  ) {
+    // Fully visible phase (78.5% of card's section)
+    opacity = 1;
+    scale = 1;
+    blur = 0;
+  } else if (sectionProgress >= cardEnd - 0.18 && sectionProgress < cardEnd) {
+    // Fade out phase (last 18%)
+    const fadeOutProgress = (sectionProgress - (cardEnd - 0.18)) / 0.18;
+    opacity = 1 - fadeOutProgress;
+    scale = 1 - fadeOutProgress * 0.05;
+    blur = 0;
+  } else {
+    opacity = 0;
+    scale = 0.95;
+    blur = 0;
+  }
+
+  const isActive =
+    sectionProgress >= cardStart + 0.035 && sectionProgress < cardEnd - 0.18;
+
+  // Adjusted text reveal animations for 220vh
+  const titleReveal = Math.max(0, Math.min(1, (localProgress - 0.015) * 3.5));
+  const descReveal = Math.max(0, Math.min(1, (localProgress - 0.06) * 3.5));
+  const tagsReveal = Math.max(0, Math.min(1, (localProgress - 0.11) * 3.5));
+  const buttonsReveal = Math.max(0, Math.min(1, (localProgress - 0.16) * 3.5));
+
+  // Vertical slide number transition
+  const getNumberSlide = () => {
+    const currentNum = index + 1;
     const nextNum = index + 2 > allProjects.length ? 1 : index + 2;
     const prevNum = index === 0 ? allProjects.length : index;
 
-    // During fade out phase
+    // During fade out, slide current number up and next number in
     if (sectionProgress >= cardEnd - 0.18 && sectionProgress < cardEnd) {
       const slideProgress = (sectionProgress - (cardEnd - 0.18)) / 0.18;
       return {
         currentTranslate: -slideProgress * 100, // Slide current up
         nextTranslate: (1 - slideProgress) * 100, // Slide next from below
         showNext: true,
-        opacity: 1 - slideProgress,
-        nextIndex: nextNum,
+        current: currentNum,
+        next: nextNum,
       };
     }
-    // During fade in phase
+    // During fade in, slide from previous number
     else if (
       sectionProgress >= cardStart &&
       sectionProgress < cardStart + 0.035
@@ -236,21 +244,8 @@ const ProjectCard = ({ project, index, sectionProgress, allProjects }) => {
         currentTranslate: (1 - slideProgress) * 100 - 100, // Slide current from below
         nextTranslate: -slideProgress * 100 - 100, // Slide previous up
         showNext: true,
-        opacity: slideProgress,
-        nextIndex: prevNum,
-      };
-    }
-    // Fully visible
-    else if (
-      sectionProgress >= cardStart + 0.035 &&
-      sectionProgress < cardEnd - 0.18
-    ) {
-      return {
-        currentTranslate: 0,
-        nextTranslate: 100,
-        showNext: false,
-        opacity: 1,
-        nextIndex: nextNum,
+        current: currentNum,
+        next: prevNum,
       };
     }
 
@@ -258,189 +253,151 @@ const ProjectCard = ({ project, index, sectionProgress, allProjects }) => {
       currentTranslate: 0,
       nextTranslate: 100,
       showNext: false,
-      opacity: 0,
-      nextIndex: nextNum,
+      current: currentNum,
+      next: nextNum,
     };
   };
 
-  const slideState = getSlideProgress();
-  const isActive =
-    sectionProgress >= cardStart + 0.035 && sectionProgress < cardEnd - 0.18;
+  const numberSlide = getNumberSlide();
 
   return (
     <div
-      className="absolute inset-0 w-full h-full"
+      className="absolute inset-0 w-full h-full transition-all duration-300"
       style={{
+        transform: `scale(${scale})`,
+        opacity: opacity,
+        filter: `blur(${blur}px)`,
         zIndex: isInRange ? 10 : 1,
         pointerEvents: isActive ? "auto" : "none",
       }}
     >
-      <div className="w-full h-full bg-[#080807] overflow-hidden relative">
-        {/* Current Card */}
-        <div
-          className="absolute inset-0 transition-transform duration-500 ease-out"
-          style={{
-            transform: `translateY(${slideState.currentTranslate}%)`,
-            opacity: slideState.opacity,
-          }}
-        >
-          <div className="container mx-auto px-4 md:px-6 lg:px-12 h-full flex items-center py-8 md:py-0">
-            <div className="grid lg:grid-cols-2 gap-6 md:gap-12 lg:gap-20 items-center w-full">
-              {/* Left Side - Content */}
-              <div className="space-y-3 md:space-y-6">
-                {/* Project Number */}
-                <div className="overflow-hidden">
+      <div className="w-full h-full bg-[#080807] overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6 lg:px-12 h-full flex items-center py-8 md:py-0">
+          <div className="grid lg:grid-cols-2 gap-6 md:gap-12 lg:gap-20 items-center w-full">
+            {/* Left Side - Content */}
+            <div className="space-y-3 md:space-y-6">
+              {/* Project Number - Vertical Slide */}
+              <div
+                className="overflow-hidden h-[72px] md:h-[96px] lg:h-[144px] relative"
+                style={{
+                  opacity: titleReveal,
+                }}
+              >
+                <div
+                  className="transition-transform duration-500 ease-out"
+                  style={{
+                    transform: `translateY(${numberSlide.currentTranslate}%)`,
+                  }}
+                >
                   <span className="text-6xl md:text-8xl lg:text-9xl font-bold text-white/10 leading-none block tabular-nums">
-                    {String(index + 1).padStart(2, "0")}
+                    {String(numberSlide.current).padStart(2, "0")}
                   </span>
                 </div>
-
-                {/* Project Title */}
-                <div className="overflow-hidden">
-                  <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                    {project.title}
-                  </h2>
-                </div>
-
-                {/* Project Description - Hidden on mobile */}
-                <div className="overflow-hidden hidden md:block">
-                  <p className="text-sm md:text-base lg:text-lg text-gray-300 leading-relaxed max-w-xl font-inter">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 md:gap-2 font-inter">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 md:px-3 py-1 md:py-1.5 text-xs md:text-sm bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white"
-                    >
-                      {tag}
+                {numberSlide.showNext && (
+                  <div
+                    className="absolute top-0 left-0 transition-transform duration-500 ease-out"
+                    style={{
+                      transform: `translateY(${numberSlide.nextTranslate}%)`,
+                    }}
+                  >
+                    <span className="text-6xl md:text-8xl lg:text-9xl font-bold text-white/10 leading-none block tabular-nums">
+                      {String(numberSlide.next).padStart(2, "0")}
                     </span>
-                  ))}
-                </div>
+                  </div>
+                )}
+              </div>
 
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-2 md:gap-3 font-inter">
+              {/* Project Title */}
+              <div
+                className="overflow-hidden"
+                style={{
+                  transform: `translateY(${(1 - titleReveal) * 30}px)`,
+                  opacity: titleReveal,
+                }}
+              >
+                <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                  {project.title}
+                </h2>
+              </div>
+
+              {/* Project Description - Hidden on mobile */}
+              <div
+                className="overflow-hidden hidden md:block"
+                style={{
+                  transform: `translateY(${(1 - descReveal) * 20}px)`,
+                  opacity: descReveal,
+                }}
+              >
+                <p className="text-sm md:text-base lg:text-lg text-gray-300 leading-relaxed max-w-xl font-inter">
+                  {project.description}
+                </p>
+              </div>
+
+              {/* Tags */}
+              <div
+                className="flex flex-wrap gap-1.5 md:gap-2 font-inter"
+                style={{
+                  transform: `translateY(${(1 - tagsReveal) * 15}px)`,
+                  opacity: tagsReveal,
+                }}
+              >
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 md:px-3 py-1 md:py-1.5 text-xs md:text-sm bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div
+                className="flex flex-col sm:flex-row gap-2 md:gap-3 font-inter"
+                style={{
+                  transform: `translateY(${(1 - buttonsReveal) * 10}px)`,
+                  opacity: buttonsReveal,
+                }}
+              >
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 px-4 md:px-5 py-2 md:py-2.5 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all border border-white/20 text-white text-xs md:text-sm font-medium hover:scale-105 duration-300"
+                >
+                  <Github className="w-3 h-3 md:w-4 md:h-4" />
+                  <span>View Code</span>
+                </a>
+                {project.liveUrl !== "#" && (
                   <a
-                    href={project.githubUrl}
+                    href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 px-4 md:px-5 py-2 md:py-2.5 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all border border-white/20 text-white text-xs md:text-sm font-medium hover:scale-105 duration-300"
+                    className="flex items-center justify-center gap-2 px-4 md:px-5 py-2 md:py-2.5 bg-gradient-to-r from-orange-600 to-orange-400 rounded-full hover:from-orange-500 hover:to-orange-300 transition-all text-white text-xs md:text-sm font-medium hover:scale-105 duration-300"
                   >
-                    <Github className="w-3 h-3 md:w-4 md:h-4" />
-                    <span>View Code</span>
+                    <ExternalLink className="w-3 h-3 md:w-4 md:h-4" />
+                    <span>Live Demo</span>
                   </a>
-                  {project.liveUrl !== "#" && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 px-4 md:px-5 py-2 md:py-2.5 bg-gradient-to-r from-orange-600 to-orange-400 rounded-full hover:from-orange-500 hover:to-orange-300 transition-all text-white text-xs md:text-sm font-medium hover:scale-105 duration-300"
-                    >
-                      <ExternalLink className="w-3 h-3 md:w-4 md:h-4" />
-                      <span>Live Demo</span>
-                    </a>
-                  )}
-                </div>
+                )}
               </div>
+            </div>
 
-              {/* Right Side - Image Slider */}
-              <div className="relative h-[300px] md:h-[400px] lg:h-[500px]">
-                <ImageSlider
-                  images={project.images}
-                  projectTitle={project.title}
-                  className="w-full h-full rounded-xl md:rounded-2xl"
-                />
-              </div>
+            {/* Right Side - Image Slider */}
+            <div
+              className="relative h-[300px] md:h-[400px] lg:h-[500px]"
+              style={{
+                transform: `scale(${0.95 + titleReveal * 0.05})`,
+                opacity: titleReveal,
+              }}
+            >
+              <ImageSlider
+                images={project.images}
+                projectTitle={project.title}
+                className="w-full h-full rounded-xl md:rounded-2xl"
+              />
             </div>
           </div>
         </div>
-
-        {/* Next/Previous Card (shown during transition) */}
-        {slideState.showNext && (
-          <div
-            className="absolute inset-0 transition-transform duration-500 ease-out"
-            style={{
-              transform: `translateY(${slideState.nextTranslate}%)`,
-              opacity: 1 - slideState.opacity,
-            }}
-          >
-            <div className="container mx-auto px-4 md:px-6 lg:px-12 h-full flex items-center py-8 md:py-0">
-              <div className="grid lg:grid-cols-2 gap-6 md:gap-12 lg:gap-20 items-center w-full">
-                {/* Left Side - Content */}
-                <div className="space-y-3 md:space-y-6">
-                  {/* Project Number */}
-                  <div className="overflow-hidden">
-                    <span className="text-6xl md:text-8xl lg:text-9xl font-bold text-white/10 leading-none block tabular-nums">
-                      {String(slideState.nextIndex).padStart(2, "0")}
-                    </span>
-                  </div>
-
-                  {/* Project Title */}
-                  <div className="overflow-hidden">
-                    <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                      {projects[slideState.nextIndex - 1]?.title}
-                    </h2>
-                  </div>
-
-                  {/* Project Description - Hidden on mobile */}
-                  <div className="overflow-hidden hidden md:block">
-                    <p className="text-sm md:text-base lg:text-lg text-gray-300 leading-relaxed max-w-xl font-inter">
-                      {projects[slideState.nextIndex - 1]?.description}
-                    </p>
-                  </div>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5 md:gap-2 font-inter">
-                    {projects[slideState.nextIndex - 1]?.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 md:px-3 py-1 md:py-1.5 text-xs md:text-sm bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-2 md:gap-3 font-inter">
-                    <a
-                      href={projects[slideState.nextIndex - 1]?.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 px-4 md:px-5 py-2 md:py-2.5 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all border border-white/20 text-white text-xs md:text-sm font-medium hover:scale-105 duration-300"
-                    >
-                      <Github className="w-3 h-3 md:w-4 md:h-4" />
-                      <span>View Code</span>
-                    </a>
-                    {projects[slideState.nextIndex - 1]?.liveUrl !== "#" && (
-                      <a
-                        href={projects[slideState.nextIndex - 1]?.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 px-4 md:px-5 py-2 md:py-2.5 bg-gradient-to-r from-orange-600 to-orange-400 rounded-full hover:from-orange-500 hover:to-orange-300 transition-all text-white text-xs md:text-sm font-medium hover:scale-105 duration-300"
-                      >
-                        <ExternalLink className="w-3 h-3 md:w-4 md:h-4" />
-                        <span>Live Demo</span>
-                      </a>
-                    )}
-                  </div>
-                </div>
-
-                {/* Right Side - Image Slider */}
-                <div className="relative h-[300px] md:h-[400px] lg:h-[500px]">
-                  <ImageSlider
-                    images={projects[slideState.nextIndex - 1]?.images}
-                    projectTitle={projects[slideState.nextIndex - 1]?.title}
-                    className="w-full h-full rounded-xl md:rounded-2xl"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

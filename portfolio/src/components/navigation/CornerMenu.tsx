@@ -92,7 +92,7 @@ export default function CornerMenu() {
 
               {/* Subtle pulse animation */}
               <motion.div
-                className="absolute inset-0 rounded-full border border-white/20"
+                className="absolute inset-0 rounded-full border border-orange-400"
                 animate={
                   isMenuOpen
                     ? {}

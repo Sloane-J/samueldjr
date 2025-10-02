@@ -141,14 +141,14 @@ export default function About() {
                       Samuel Dorkey Jr
                     </span>
                   </h3>
-                  
+
                 </motion.div>
 
-                <motion.p variants={itemVariants} className="text-[#D1D1C7] text-lg lg:text-xl leading-relaxed opacity-90">
+                <motion.p variants={itemVariants} className="text-[#D1D1C7] text-lg lg:text-xl leading-relaxed opacity-90 font-inter">
                   Driven by a passion for design and development, I transform ideas into live projects, ensuring a seamless journey that delivers a powerful, positive impact on the digital world and your business.
                 </motion.p>
 
-                <motion.p variants={itemVariants} className="text-[#D1D1C7] text-base lg:text-lg leading-relaxed opacity-80">
+                <motion.p variants={itemVariants} className="text-[#D1D1C7] text-base lg:text-lg leading-relaxed opacity-80 font-inter">
                   My core mission is crafting exceptional web experiences that resonate with users, thanks to a keen eye for detail and a commitment to user-centric principles. Beyond development, I share insights through my blog and unwind with mobile gaming on YouTube.
                 </motion.p>
 
@@ -160,13 +160,13 @@ export default function About() {
                     Ready to get started?
                     <ArrowDown className="w-5 h-5" />
                   </a>
-                  <a
+                 {/*  <a
                     href="/resume.pdf"
                     className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm rounded-full font-semibold text-lg text-white hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/30"
                   >
                     View Resume
                     <ExternalLink className="w-5 h-5" />
-                  </a>
+                  </a>*/}
                 </motion.div>
               </motion.div>
             </div>
