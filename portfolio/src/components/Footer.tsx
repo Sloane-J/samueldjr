@@ -1,7 +1,14 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Github, Twitter, Linkedin, Mail, ArrowUp, ExternalLink, Heart, Code } from "lucide-react"
+import { motion } from "framer-motion";
+import {
+  Github,
+  Twitter,
+  Linkedin,
+  Mail,
+  ArrowUp,
+  ExternalLink,
+} from "lucide-react";
 
 export default function Footer() {
   const socialLinks = [
@@ -9,34 +16,34 @@ export default function Footer() {
       icon: Github,
       href: "https://github.com/Sloane-J",
       label: "GitHub",
-      color: "hover:text-gray-300"
+      color: "hover:text-gray-300",
     },
     {
       icon: Twitter,
       href: "https://twitter.com/sloanejnr",
       label: "Twitter",
-      color: "hover:text-blue-400"
+      color: "hover:text-blue-400",
     },
     {
       icon: Linkedin,
       href: "https://www.linkedin.com/in/samueldorkey9a88901bb/",
       label: "LinkedIn",
-      color: "hover:text-blue-500"
+      color: "hover:text-blue-500",
     },
     {
       icon: Mail,
       href: "mailto:samueldorkeyjr@gmail.com",
       label: "Email",
-      color: "hover:text-orange-400"
+      color: "hover:text-orange-400",
     },
-  ]
+  ];
 
   const quickLinks = [
     { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
     { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
-  ]
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -44,23 +51,23 @@ export default function Footer() {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  }
+        delayChildren: 0.2,
+      },
+    },
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  }
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <footer className="min-h-[50vh] flex flex-col relative overflow-hidden bg-[#080807]">
@@ -82,22 +89,27 @@ export default function Footer() {
           >
             {/* Main Footer Content */}
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-16">
-
               {/* Left Section - Brand & Description */}
-              <motion.div variants={itemVariants} className="lg:col-span-5 space-y-6">
+              <motion.div
+                variants={itemVariants}
+                className="lg:col-span-5 space-y-6"
+              >
                 <div>
                   <h3 className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-blue-500 bg-clip-text text-transparent">
                     SDJ
                   </h3>
                   <p className="text-[#D1D1C7] text-lg lg:text-xl opacity-90 leading-relaxed mb-6">
-                    Crafting digital experiences that inspire and engage. Let's build something amazing together.
+                    Crafting digital experiences that inspire and engage. Let's
+                    build something amazing together.
                   </p>
                 </div>
               </motion.div>
 
               {/* Center Section - Quick Links */}
               <motion.div variants={itemVariants} className="lg:col-span-3">
-                <h4 className="text-xl font-semibold mb-6 text-[#D1D1C7]">Quick Links</h4>
+                <h4 className="text-xl font-semibold mb-6 text-[#D1D1C7]">
+                  Quick Links
+                </h4>
                 <ul className="space-y-4">
                   {quickLinks.map((link) => (
                     <li key={link.name}>
@@ -116,9 +128,14 @@ export default function Footer() {
               </motion.div>
 
               {/* Right Section - Social Links & CTA */}
-              <motion.div variants={itemVariants} className="lg:col-span-4 space-y-8">
+              <motion.div
+                variants={itemVariants}
+                className="lg:col-span-4 space-y-8"
+              >
                 <div>
-                  <h4 className="text-xl font-semibold mb-6 text-[#D1D1C7]">Let's Connect</h4>
+                  <h4 className="text-xl font-semibold mb-6 text-[#D1D1C7]">
+                    Let's Connect
+                  </h4>
                   <div className="grid grid-cols-2 gap-4">
                     {socialLinks.map((social, index) => (
                       <a
@@ -145,13 +162,20 @@ export default function Footer() {
               className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
             >
               <p className="text-[#D1D1C7] opacity-60 text-sm">
-                © {new Date().getFullYear()} Samuel Dorkey Jr. All rights reserved.
+                © {new Date().getFullYear()} Samuel Dorkey Jr. All rights
+                reserved.
               </p>
               <div className="flex items-center gap-6 text-sm">
-                <a href="#" className="text-[#D1D1C7] opacity-60 hover:opacity-100 transition-opacity duration-300">
+                <a
+                  href="#"
+                  className="text-[#D1D1C7] opacity-60 hover:opacity-100 transition-opacity duration-300"
+                >
                   Privacy Policy
                 </a>
-                <a href="#" className="text-[#D1D1C7] opacity-60 hover:opacity-100 transition-opacity duration-300">
+                <a
+                  href="#"
+                  className="text-[#D1D1C7] opacity-60 hover:opacity-100 transition-opacity duration-300"
+                >
                   Terms of Service
                 </a>
               </div>
@@ -160,5 +184,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

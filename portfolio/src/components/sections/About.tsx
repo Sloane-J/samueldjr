@@ -2,7 +2,7 @@
 
 import React from "react"
 import { motion } from "framer-motion"
-import { Code2, Palette, Globe2, ArrowDown, ExternalLink } from "lucide-react"
+import { Code2, Palette, Globe2, ArrowDown } from "lucide-react"
 
 const skills = [
   {
