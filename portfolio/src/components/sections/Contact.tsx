@@ -286,10 +286,13 @@ export default function ContactCard() {
               transition={{ duration: 0.5 }}
               className="flex-shrink-0 relative z-10"
             >
-              <PhoneCall className="w-7 h-7 md:w-8 md:h-8" />
+              {/* Slightly smaller icon sizes */}
+              <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6" />
             </motion.div>
 
-            <span className="relative z-10 font-bold">Book Your Call Now</span>
+            <span className="relative z-10 font-semibold text-sm sm:text-base">
+              Book Your Call Now
+            </span>
 
             <motion.div
               animate={{
@@ -302,7 +305,8 @@ export default function ContactCard() {
               }}
               className="flex-shrink-0 relative z-10"
             >
-              <ArrowRight className="w-6 h-6 md:w-7 md:h-7" />
+              {/* Slightly smaller arrow icon */}
+              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6" />
             </motion.div>
 
             {/* Button glow */}

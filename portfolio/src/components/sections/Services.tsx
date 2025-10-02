@@ -188,13 +188,15 @@ export default function Services() {
                 that the solutions I provide not only meet your immediate needs
                 but also support your long-term business objectives.
               </motion.p>
-
-              <motion.div variants={textItemVariants} className="pt-4">
+              <motion.div
+                variants={textItemVariants}
+                className="pt-4 flex justify-center"
+              >
                 <a
                   href="#contact"
-                  className="inline-flex items-center bg-gradient-to-r from-orange-600 to-orange-400 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-orange-400 hover:to-orange-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25"
+                  className="inline-flex items-center bg-gradient-to-r from-orange-600 to-orange-400 text-white px-5 py-2.5 rounded-full font-semibold text-sm md:text-base hover:from-orange-400 hover:to-orange-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25"
                 >
-                  <Rocket className="w-6 h-6 mr-3" />
+                  <Rocket className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                   Start Your Project
                 </a>
               </motion.div>
